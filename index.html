@@ -26,7 +26,7 @@
     <header class="h-16 border-b border-white/5 flex items-center justify-between px-8 bg-[#0a0c10]">
         <div class="flex flex-col">
             <span class="text-blue-500 font-bold tracking-tighter text-lg mono italic">CORTANA // BIZ-OS</span>
-            <span class="text-[8px] text-slate-500 mono uppercase">Enlace Neural: <span class="text-emerald-500">ACTIVO</span></span>
+            <span class="text-[8px] text-slate-500 mono uppercase">Enlace Neural: <span class="text-emerald-500 font-bold">ACTIVO</span></span>
         </div>
         <div id="credits-tag" class="text-[9px] mono text-emerald-500 bg-emerald-500/10 px-3 py-1 border border-emerald-500/20 font-bold uppercase">Créditos: 1 Gratis</div>
     </header>
@@ -35,7 +35,7 @@
         <aside class="w-64 border-r border-white/5 bg-[#080a0f] p-4 flex flex-col">
             <h2 class="text-[10px] mono text-slate-500 uppercase mb-4 border-b border-white/5 pb-2">Intel Recopilada</h2>
             <div id="archive-list" class="flex-grow overflow-y-auto space-y-2 text-[10px] scroll-custom"></div>
-            <button onclick="resetApp()" class="mt-4 text-[8px] text-slate-700 hover:text-red-500 mono uppercase">Purgar Sistema</button>
+            <button onclick="resetApp()" class="mt-4 text-[8px] text-slate-700 hover:text-red-500 mono uppercase transition-colors">Purgar Sistema</button>
         </aside>
 
         <section class="flex-grow flex flex-col relative">
@@ -55,18 +55,18 @@
                         <button id="btn-social" onclick="setMission('social')" class="mission-btn text-[9px] mono py-2 uppercase">Social</button>
                     </div>
                     <div class="flex gap-2">
-                        <input id="user-input" type="text" placeholder="Ingrese directiva..." class="flex-grow bg-[#0d1117] border border-white/10 p-3 text-sm mono text-slate-200 focus:outline-none focus:border-blue-500">
-                        <button onclick="sendMessage()" class="bg-blue-600 px-6 text-[10px] mono font-bold text-white uppercase hover:bg-blue-700">Enviar</button>
+                        <input id="user-input" type="text" placeholder="Ingrese directiva estratégica..." class="flex-grow bg-[#0d1117] border border-white/10 p-3 text-sm mono text-slate-200 focus:outline-none focus:border-blue-500 rounded-sm">
+                        <button onclick="sendMessage()" class="bg-blue-600 px-6 text-[10px] mono font-bold text-white uppercase hover:bg-blue-700 transition-colors">Enviar</button>
                     </div>
-                    <button id="execute-btn" onclick="executeMasterPlan()" class="w-full border border-blue-500/30 text-blue-500 py-3 text-[10px] mono uppercase font-bold tracking-[0.2em] hover:bg-blue-500/10">[ Ejecutar Protocolo Maestro ]</button>
+                    <button id="execute-btn" onclick="executeMasterPlan()" class="w-full border border-blue-500/30 text-blue-500 py-3 text-[10px] mono uppercase font-bold tracking-[0.2em] hover:bg-blue-500/10 transition-all">[ Ejecutar Protocolo Maestro ]</button>
                 </div>
             </div>
         </section>
     </main>
 
     <script>
-        // LA CLAVE DE TU CAPTURA DE PANTALLA
-        const API_KEY = "AIzaSyCGik9mUbimvue-nwDtjDdtNASUa3jx0QM"; 
+        // TU CLAVE DE API ACTUALIZADA
+        const API_KEY = "AIzaSyAzj0Ba0mHQxbFnH11uBH_wQeYI_uoMqDU"; 
         const sfx = new Audio('https://codeskulptor-demos.commondatastorage.googleapis.com/descent/gotitem.mp3');
         sfx.volume = 0.2;
 
@@ -78,7 +78,9 @@
             document.getElementById(`btn-${type}`).classList.add('active-mission');
         }
 
+        // Función de llamada corregida para evitar el error 404
         async function callGemini(promptText) {
+            // URL corregida a v1beta/models/gemini-1.5-flash
             const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
             
             const response = await fetch(url, {
@@ -91,7 +93,7 @@
 
             if (!response.ok) {
                 const errorData = await response.json();
-                throw new Error(errorData.error.message || 'Error desconocido');
+                throw new Error(errorData.error.message || 'Error de conexión');
             }
 
             const data = await response.json();
@@ -100,45 +102,45 @@
 
         async function sendMessage() {
             const input = document.getElementById('user-input');
+            const chat = document.getElementById('chat-box');
             if(!input.value) return;
             
-            const chat = document.getElementById('chat-box');
             const userMsg = input.value;
             chat.innerHTML += `<div class="flex flex-col items-end"><span class="text-[9px] mono text-slate-500 uppercase">Comandante</span><p class="bg-white/5 p-3 rounded text-sm max-w-[80%] border border-white/5">${userMsg}</p></div>`;
             input.value = '';
             chat.scrollTop = chat.scrollHeight;
 
             try {
-                const aiResponse = await callGemini(`Eres Cortana. Responde de forma táctica: ${userMsg}`);
-                chat.innerHTML += `<div class="flex flex-col"><span class="text-[9px] mono text-blue-500 uppercase font-bold">Cortana</span><p class="text-slate-300 text-sm border-l-2 border-blue-500/30 pl-3">${aiResponse}</p></div>`;
+                const aiResponse = await callGemini(`Eres Cortana de Halo. Responde de forma táctica y breve a la siguiente orden: ${userMsg}`);
+                chat.innerHTML += `<div class="flex flex-col"><span class="text-[9px] mono text-blue-500 uppercase font-bold italic">Cortana</span><p class="text-slate-300 text-sm border-l-2 border-blue-500/30 pl-3 leading-relaxed">${aiResponse}</p></div>`;
             } catch(e) {
-                chat.innerHTML += `<div class="text-[9px] text-red-500 mono uppercase mt-2">[!] ERROR DE ENLACE: ${e.message}</div>`;
+                chat.innerHTML += `<div class="text-[9px] text-red-500 mono uppercase mt-2 font-bold">[!] ERROR CRÍTICO: ${e.message}</div>`;
             }
             chat.scrollTop = chat.scrollHeight;
         }
 
         async function executeMasterPlan() {
             const chat = document.getElementById('chat-box');
-            chat.innerHTML += `<div class="text-[9px] mono text-blue-400 animate-pulse mt-4">[SISTEMA]: Compilando Informe Maestro...</div>`;
+            chat.innerHTML += `<div class="text-[9px] mono text-blue-400 animate-pulse mt-4">[SISTEMA]: Procesando Informe Maestro de Alto Nivel...</div>`;
             
             const prompts = { 
-                business: "Genera un plan de negocios para una agencia de automatización con IA.", 
-                creative: "Estructura un libro técnico de 10 capítulos sobre IA.", 
-                visual: "5 prompts 8k para diseño de marca.", 
-                social: "Calendario de 30 días para LinkedIn." 
+                business: "Genera un plan de negocios estratégico para una agencia de automatización con IA, incluyendo servicios clave y nichos rentables.", 
+                creative: "Estructura un libro técnico de 10 capítulos sobre el impacto de la IA generativa.", 
+                visual: "Genera 5 master prompts cinemáticos 8k para el branding de una empresa tecnológica.", 
+                social: "Crea un calendario editorial de 30 días para LinkedIn enfocado en autoridad en IA." 
             };
 
             try {
                 const report = await callGemini(prompts[currentMission]);
                 sfx.play();
-                chat.innerHTML += `<div class="bg-blue-500/5 border border-blue-500/20 p-4 rounded text-sm text-slate-300 italic my-4">${report.replace(/\n/g, '<br>')}</div>`;
+                chat.innerHTML += `<div class="bg-blue-500/5 border border-blue-500/20 p-5 rounded text-sm text-slate-300 italic my-4 leading-relaxed shadow-lg">${report.replace(/\n/g, '<br>')}</div>`;
             } catch(e) {
-                chat.innerHTML += `<div class="text-[9px] text-red-500 mono uppercase mt-2">[!] FALLO CRÍTICO: ${e.message}</div>`;
+                chat.innerHTML += `<div class="text-[9px] text-red-500 mono uppercase mt-2 font-bold">[!] FALLO EN EL PROTOCOLO: ${e.message}</div>`;
             }
             chat.scrollTop = chat.scrollHeight;
         }
 
-        function resetApp() { if(confirm("¿Purgar sistema?")) location.reload(); }
+        function resetApp() { if(confirm("¿Purgar todos los registros del búnker?")) location.reload(); }
     </script>
 </body>
 </html>
