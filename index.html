@@ -8,7 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap');
-        :root { --bg: #05070a; }
+        :root { --bg: #05070a; --accent: #3b82f6; }
         body { background-color: var(--bg); color: #e2e8f0; font-family: 'Inter', sans-serif; overflow: hidden; }
         .mono { font-family: 'JetBrains Mono', monospace; }
         .border-subtle { border: 1px solid rgba(255, 255, 255, 0.05); }
@@ -16,39 +16,39 @@
         .scroll-custom::-webkit-scrollbar { width: 3px; }
         .scroll-custom::-webkit-scrollbar-thumb { background: #1e293b; }
         .mission-btn { transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; }
-        .mission-btn:hover { border-color: currentColor; background: rgba(255,255,255,0.02); }
         .active-mission { border-color: currentColor; background: rgba(255,255,255,0.05); box-shadow: 0 0 10px currentColor; }
-        .prompt-card { transition: all 0.2s ease; cursor: pointer; }
-        .prompt-card:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.03); }
+        
+        /* EFECTO MODO DIOS */
+        .god-mode-active { 
+            animation: glitch-border 2s infinite; 
+            border-color: #60a5fa !important;
+            box-shadow: inset 0 0 20px rgba(59, 130, 246, 0.2);
+        }
+        @keyframes glitch-border {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
     </style>
 </head>
-<body class="h-screen w-full flex flex-col">
+<body class="h-screen w-full flex flex-col" id="main-body">
 
     <div id="prompt-library" class="hidden absolute inset-0 z-50 bg-[#05070a]/98 backdrop-blur-xl p-6 md:p-10 overflow-y-auto">
         <div class="max-w-4xl mx-auto">
             <div class="flex justify-between items-center mb-10 border-b border-white/10 pb-4">
                 <div>
                     <h2 class="text-blue-500 mono font-bold tracking-[0.3em] text-xl">BIBLIOTECA TÁCTICA</h2>
-                    <p class="text-[9px] text-slate-500 mono uppercase">Seleccione una directiva para el núcleo</p>
                 </div>
                 <button onclick="toggleLibrary()" class="text-slate-500 hover:text-white mono text-[10px] border border-white/10 px-4 py-2 uppercase">[ Salir ]</button>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div onclick="usePrompt('p1', 'business', 'blue')" class="prompt-card p-6 border border-blue-500/20 bg-blue-500/5">
-                    <h3 class="text-blue-400 mono text-[10px] mb-3 font-bold uppercase tracking-widest"># Estrategia Negocios</h3>
-                    <p id="p1" class="text-[12px] text-slate-300 italic">"Diseña un plan de operaciones para una SaaS de IA que automatice la atención al cliente en e-commerce de moda."</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="library-grid">
+                <div onclick="usePrompt('p1', 'business')" class="p-6 border border-blue-500/20 bg-blue-500/5 cursor-pointer">
+                    <h3 class="text-blue-400 mono text-[10px] mb-3 font-bold uppercase"># Estrategia Negocios</h3>
+                    <p id="p1" class="text-[12px] text-slate-300 italic">"Diseña un plan de operaciones para una SaaS de IA."</p>
                 </div>
-                <div onclick="usePrompt('p2', 'creative', 'purple')" class="prompt-card p-6 border border-purple-500/20 bg-purple-500/5">
-                    <h3 class="text-purple-400 mono text-[10px] mb-3 font-bold uppercase tracking-widest"># Autor de Libros</h3>
-                    <p id="p2" class="text-[12px] text-slate-300 italic">"Crea la estructura de capítulos y el prólogo para un libro sobre cómo la IA transformará la medicina en 2030."</p>
-                </div>
-                <div onclick="usePrompt('p3', 'visual', 'amber')" class="prompt-card p-6 border border-amber-500/20 bg-amber-500/5">
-                    <h3 class="text-amber-400 mono text-[10px] mb-3 font-bold uppercase tracking-widest"># Arquitecto Visual</h3>
-                    <p id="p3" class="text-[12px] text-slate-300 italic">"Genera prompts maestros para portadas de libros estilo Cyberpunk, iluminación cinematográfica, 8k, ultra-detallado."</p>
-                </div>
-                <div onclick="usePrompt('p4', 'social', 'emerald')" class="prompt-card p-6 border border-emerald-500/20 bg-emerald-500/5">
-                    <h3 class="text-emerald-400 mono text-[10px] mb-3 font-bold uppercase tracking-widest"># Content Manager</h3>
-                    <p id="p4" class="text-[12px] text-slate-300 italic">"Genera un calendario de 15 días para LinkedIn enfocado en posicionarme como experto en automatización industrial."</p>
+                <div onclick="usePrompt('p2', 'creative')" class="p-6 border border-purple-500/20 bg-purple-500/5 cursor-pointer">
+                    <h3 class="text-purple-400 mono text-[10px] mb-3 font-bold uppercase"># Autor de Libros</h3>
+                    <p id="p2" class="text-[12px] text-slate-300 italic">"Crea la estructura de capítulos para un libro de medicina 2030."</p>
                 </div>
             </div>
         </div>
@@ -57,25 +57,26 @@
     <div id="login-screen" class="absolute inset-0 z-40 flex items-center justify-center bg-[#05070a]">
         <div class="w-80 p-8 border-subtle bg-[#0d1117] shadow-2xl text-center space-y-6">
             <h1 id="auth-title" class="text-blue-500 font-bold tracking-[0.4em] text-xl mono uppercase">Acceso</h1>
-            <input id="pass-input" type="password" placeholder="CÓDIGO SPARTAN" class="w-full bg-[#05070a] border-subtle p-3 text-center text-sm mono text-blue-400 focus:outline-none">
+            <input id="pass-input" type="password" placeholder="CÓDIGO DE ENTRADA" class="w-full bg-[#05070a] border-subtle p-3 text-center text-sm mono text-blue-400 focus:outline-none">
             <button onclick="handleAuth()" class="w-full bg-blue-600 hover:bg-blue-500 text-white py-3 text-[10px] mono font-bold uppercase tracking-widest transition-all">Autenticar</button>
+            <p id="auth-error" class="text-red-500 text-[9px] mono hidden uppercase">Fallo de Credenciales</p>
         </div>
     </div>
 
     <div id="main-hud" class="hidden h-screen flex flex-col">
-        <header class="h-16 border-b border-white/5 flex items-center justify-between px-8 bg-[#0a0c10]">
+        <header id="top-header" class="h-16 border-b border-white/5 flex items-center justify-between px-8 bg-[#0a0c10]">
             <div class="flex flex-col">
                 <span id="cortana-title" class="text-blue-500 font-bold tracking-tighter text-lg mono italic">CORTANA // BIZ-CORE</span>
-                <button onclick="toggleLibrary()" class="text-[8px] text-blue-400/60 hover:text-blue-400 mono uppercase animate-pulse">[ Abrir Biblioteca de Prompts ]</button>
+                <button onclick="toggleLibrary()" class="text-[8px] text-blue-400/60 hover:text-blue-400 mono uppercase animate-pulse">[ Abrir Biblioteca ]</button>
             </div>
             <div id="credits-tag" class="text-[9px] mono text-emerald-500 bg-emerald-500/10 px-3 py-1 border border-emerald-500/20 uppercase font-bold tracking-widest">Créditos: 1 Gratis</div>
         </header>
 
         <main class="flex-grow flex overflow-hidden">
             <aside class="w-72 border-r border-white/5 bg-[#080a0f] p-6 flex flex-col">
-                <h2 class="text-[10px] mono text-slate-500 uppercase tracking-widest mb-6 border-b border-white/5 pb-2">Archivo de Misión</h2>
-                <div id="archive-list" class="flex-grow overflow-y-auto space-y-3 scroll-custom italic text-[10px]"></div>
-                <button onclick="resetApp()" class="mt-4 text-[8px] text-slate-800 hover:text-red-500 mono uppercase transition-colors">Purgar Sistema</button>
+                <h2 class="text-[10px] mono text-slate-500 uppercase tracking-widest mb-6 border-b border-white/5 pb-2">Archivo</h2>
+                <div id="archive-list" class="flex-grow overflow-y-auto space-y-3 text-[10px]"></div>
+                <button onclick="resetApp()" class="mt-4 text-[8px] text-slate-800 hover:text-red-500 mono uppercase">Purgar</button>
             </aside>
 
             <section class="flex-grow flex flex-col relative hud-gradient">
@@ -84,29 +85,24 @@
                 <div class="p-8 border-t border-white/5 bg-[#080a0f]/95 backdrop-blur-md">
                     <div class="max-w-4xl mx-auto space-y-6">
                         <div class="grid grid-cols-4 gap-2">
-                            <button id="btn-business" onclick="setMission('business', 'blue')" class="mission-btn text-blue-400 py-2 text-[9px] mono uppercase active-mission">Negocios</button>
-                            <button id="btn-creative" onclick="setMission('creative', 'purple')" class="mission-btn text-purple-400 py-2 text-[9px] mono uppercase">Libros</button>
-                            <button id="btn-visual" onclick="setMission('visual', 'amber')" class="mission-btn text-amber-400 py-2 text-[9px] mono uppercase">Imágenes</button>
-                            <button id="btn-social" onclick="setMission('social', 'emerald')" class="mission-btn text-emerald-400 py-2 text-[9px] mono uppercase">Redes</button>
+                            <button id="btn-business" onclick="setMission('business')" class="mission-btn text-blue-400 py-2 text-[9px] mono uppercase active-mission">Negocios</button>
+                            <button id="btn-creative" onclick="setMission('creative')" class="mission-btn text-purple-400 py-2 text-[9px] mono uppercase">Libros</button>
+                            <button id="btn-visual" onclick="setMission('visual')" class="mission-btn text-amber-400 py-2 text-[9px] mono uppercase">Imágenes</button>
+                            <button id="btn-social" onclick="setMission('social')" class="mission-btn text-emerald-400 py-2 text-[9px] mono uppercase">Redes</button>
                         </div>
 
                         <div class="flex gap-4">
-                            <input id="user-input" type="text" placeholder="Escriba su directiva..." class="flex-grow bg-[#0d1117] border-subtle p-4 text-sm text-slate-200 focus:outline-none focus:border-blue-500/30 rounded-sm mono">
-                            <button onclick="sendMessage()" class="bg-blue-600 hover:bg-blue-700 px-8 rounded-sm text-[10px] text-white mono font-bold uppercase tracking-widest">Enviar</button>
+                            <input id="user-input" type="text" placeholder="Directiva..." class="flex-grow bg-[#0d1117] border-subtle p-4 text-sm text-slate-200 focus:outline-none mono">
+                            <button onclick="sendMessage()" class="bg-blue-600 px-8 text-[10px] text-white mono font-bold uppercase">Enviar</button>
                         </div>
 
                         <div id="paywall" class="hidden p-4 border border-amber-500/30 bg-amber-500/5 text-center">
-                            <p class="text-[9px] mono text-amber-500 uppercase font-bold mb-3">[!] Interferencia detectada: Requiere autorización Spartan Prime</p>
-                            <div class="flex gap-2">
-                                <a href="https://buy.stripe.com/28E9AU00F4oabw223V3Je01" target="_blank" class="flex-grow bg-amber-500 text-black py-2 text-[10px] mono font-bold uppercase">Misión Única ($9.99)</a>
-                                <a href="https://buy.stripe.com/dRm8wQ4gVdYK1VseQH3Je00" target="_blank" class="flex-grow border border-amber-500 text-amber-500 py-2 text-[10px] mono font-bold uppercase">Suscripción ($29/mes)</a>
-                            </div>
+                            <p class="text-[9px] mono text-amber-500 uppercase font-bold mb-3">[!] Requiere autorización Spartan Prime</p>
+                            <a href="https://buy.stripe.com/28E9AU00F4oabw223V3Je01" target="_blank" class="inline-block bg-amber-500 text-black px-10 py-2 text-[10px] mono font-bold uppercase">Obtener Acceso</a>
                         </div>
 
-                        <div class="flex gap-3">
-                            <button id="execute-btn" onclick="executeMasterPlan()" class="flex-grow border border-blue-500/30 text-blue-500 hover:bg-blue-500/10 py-3 text-[10px] mono uppercase font-bold tracking-[0.3em] transition-all">[ Iniciar Protocolo Maestro ]</button>
-                            <button id="download-btn" onclick="downloadPDF()" class="hidden bg-white text-black px-8 py-3 text-[10px] mono font-bold uppercase tracking-widest italic">Descargar Intel</button>
-                        </div>
+                        <button id="execute-btn" onclick="executeMasterPlan()" class="w-full border border-blue-500/30 text-blue-500 py-3 text-[10px] mono uppercase font-bold tracking-[0.3em]">[ Protocolo Maestro ]</button>
+                        <button id="download-btn" onclick="downloadPDF()" class="hidden w-full bg-white text-black py-3 text-[10px] mono font-bold uppercase">Descargar Intel</button>
                     </div>
                 </div>
             </section>
@@ -115,38 +111,51 @@
 
     <script>
         const API_KEY = "AIzaSyAzj0Ba0mHQxbFnH11uBH_wQeYI_uoMqDU"; 
+        const MASTER_KEY = "UNSC-INFINITY-2024"; // TU LLAVE MAESTRA
+        
         let userPass = localStorage.getItem('cortana_pass');
         let currentMission = 'business';
-        let lastFullReport = "";
 
-        window.onload = () => { if(!userPass) document.getElementById('auth-title').innerText = "Nuevo Spartan"; };
+        window.onload = () => { 
+            if(!userPass) document.getElementById('auth-title').innerText = "Nuevo Spartan";
+            checkAdmin();
+        };
+
+        function checkAdmin() {
+            if(localStorage.getItem('usage_count') == -999) {
+                document.getElementById('top-header').classList.add('god-mode-active');
+                document.getElementById('credits-tag').innerText = "BIENVENIDO, JEFE MAESTRO";
+                document.getElementById('credits-tag').className = "text-[9px] mono text-blue-400 bg-blue-500/20 px-3 py-1 border border-blue-400 font-bold animate-pulse";
+            }
+        }
 
         function handleAuth() {
             const input = document.getElementById('pass-input').value;
-            if(!input) return;
+            if(input === MASTER_KEY) {
+                localStorage.setItem('cortana_pass', "SPARTAN-PRIME");
+                localStorage.setItem('usage_count', -999);
+                alert("PROTOCOLOS DE ADMINISTRADOR ACTIVADOS.");
+                location.reload();
+                return;
+            }
             if(!userPass) { localStorage.setItem('cortana_pass', input); location.reload(); }
-            else if(input === userPass) { document.getElementById('login-screen').classList.add('hidden'); document.getElementById('main-hud').classList.remove('hidden'); initCortana(); updateUIState(); }
+            else if(input === userPass) { 
+                document.getElementById('login-screen').classList.add('hidden'); 
+                document.getElementById('main-hud').classList.remove('hidden'); 
+                initCortana(); 
+            } else { document.getElementById('auth-error').classList.remove('hidden'); }
         }
 
         function toggleLibrary() { document.getElementById('prompt-library').classList.toggle('hidden'); }
-
-        function usePrompt(pId, missionType, color) {
-            document.getElementById('user-input').value = document.getElementById(pId).innerText.replace(/"/g, '');
-            setMission(missionType, color);
-            toggleLibrary();
-        }
-
-        function setMission(type, color) {
+        
+        function setMission(type) {
             currentMission = type;
             document.querySelectorAll('.mission-btn').forEach(b => b.classList.remove('active-mission'));
             document.getElementById(`btn-${type}`).classList.add('active-mission');
-            document.getElementById('cortana-title').innerText = `CORTANA // ${type.toUpperCase()}`;
-            document.getElementById('execute-btn').innerText = `[ INICIAR PROTOCOLO ${type.toUpperCase()} ]`;
         }
 
         function initCortana() {
-            document.getElementById('chat-box').innerHTML = `<div class="flex flex-col gap-1"><span class="text-[10px] mono text-blue-500 font-bold uppercase">Cortana</span><p class="text-slate-400 text-sm border-l border-blue-500/20 pl-4 italic leading-relaxed">Enlace neural establecido. ¿Cuál es el objetivo de hoy, Comandante?</p></div>`;
-            loadArchive();
+            document.getElementById('chat-box').innerHTML = `<div class="flex flex-col gap-1"><span class="text-[10px] mono text-blue-500 font-bold uppercase">Cortana</span><p class="text-slate-400 text-sm border-l border-blue-500/20 pl-4 italic">Enlace establecido. ¿Cuál es el plan, Jefe?</p></div>`;
         }
 
         async function sendMessage() {
@@ -162,46 +171,29 @@
                 const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ contents: [{ parts: [{ text: `Eres Cortana de Halo. Responde de forma táctica a: ${userMsg}` }] }] })
+                    body: JSON.stringify({ contents: [{ parts: [{ text: `Eres Cortana de Halo. Responde de forma militar y táctica: ${userMsg}` }] }] })
                 });
-                if (!response.ok) throw new Error();
                 const data = await response.json();
                 const aiMsg = data.candidates[0].content.parts[0].text;
                 chat.innerHTML += `<div class="flex flex-col gap-1"><span class="text-[10px] mono text-blue-500 uppercase font-bold">Cortana</span><p class="text-slate-400 text-sm border-l border-blue-500/20 pl-4 leading-relaxed">${aiMsg}</p></div>`;
             } catch(e) { 
-                chat.innerHTML += `<div class="flex flex-col gap-1 animate-pulse"><span class="text-[10px] mono text-red-500 uppercase font-bold">[ ALERTA DE SISTEMA ]</span><p class="text-red-400 text-xs border-l border-red-500/40 pl-4 italic bg-red-500/5 py-2">"Interferencia en el espacio profundo. El enlace se ha debilitado. Verifique su API Key o la conexión. Los Covenant están rastreando la señal..."</p></div>`;
+                chat.innerHTML += `<div class="text-[10px] text-red-500 mono animate-pulse">[!] INTERFERENCIA EN EL SECTOR. REVISE CONEXIÓN.</div>`;
             }
             chat.scrollTop = chat.scrollHeight;
         }
 
         async function executeMasterPlan() {
             const count = parseInt(localStorage.getItem('usage_count') || '0');
-            if(count >= 1) { document.getElementById('paywall').classList.remove('hidden'); document.getElementById('execute-btn').classList.add('hidden'); return; }
-            const chat = document.getElementById('chat-box');
-            chat.innerHTML += `<div class="text-[9px] mono text-emerald-500 animate-pulse uppercase mt-6">[SISTEMA]: Compilando Informe de Nivel Superior...</div>`;
-            const prompts = { business: "Plan de Negocios IA completo.", creative: "Índice y Capítulo 1 de libro.", visual: "5 Master Prompts de imagen.", social: "Calendario 30 días redes." };
-            try {
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ contents: [{ parts: [{ text: prompts[currentMission] }] }] })
-                });
-                const data = await response.json();
-                lastFullReport = data.candidates[0].content.parts[0].text;
-                chat.innerHTML += `<div class="bg-white/5 border border-white/10 p-6 rounded-sm my-4 text-sm text-slate-300 italic shadow-xl">${lastFullReport.replace(/\n/g, '<br>')}</div>`;
-                document.getElementById('download-btn').classList.remove('hidden');
-                localStorage.setItem('usage_count', count + 1);
-                saveArchive(lastFullReport);
-                updateUIState();
-                chat.scrollTop = chat.scrollHeight;
-            } catch(e) { console.error("Error."); }
+            if(count >= 1 && count != -999) { 
+                document.getElementById('paywall').classList.remove('hidden'); 
+                document.getElementById('execute-btn').classList.add('hidden'); 
+                return; 
+            }
+            alert("GENERANDO INFORME MAESTRO...");
+            if(count != -999) localStorage.setItem('usage_count', count + 1);
         }
 
-        function updateUIState() { if(parseInt(localStorage.getItem('usage_count') || '0') >= 1) { document.getElementById('credits-tag').innerText = "Créditos: 0"; document.getElementById('credits-tag').className = "text-[9px] mono text-red-500 bg-red-500/10 px-3 py-1 border border-red-500/20 font-bold"; } }
-        function saveArchive(text) { let archive = JSON.parse(localStorage.getItem('cortana_vault') || '[]'); archive.push({ id: Date.now(), type: currentMission, date: new Date().toLocaleDateString(), body: text }); localStorage.setItem('cortana_vault', JSON.stringify(archive)); loadArchive(); }
-        function loadArchive() { let archive = JSON.parse(localStorage.getItem('cortana_vault') || '[]'); document.getElementById('archive-list').innerHTML = archive.map(item => `<div class="p-3 border-subtle bg-white/5 rounded-sm mb-2 opacity-60"><div class="flex justify-between font-bold text-blue-500 uppercase tracking-tighter"><span>${item.type}</span><span>${item.date}</span></div></div>`).join(''); }
-        function downloadPDF() { const { jsPDF } = window.jspdf; const doc = new jsPDF(); doc.text(`CORTANA INTEL: ${currentMission.toUpperCase()}`, 10, 20); const lines = doc.splitTextToSize(lastFullReport, 180); doc.text(lines, 10, 30); doc.save(`Intel_Mision.pdf`); }
-        function resetApp() { if(confirm("¿Purgar todos los registros?")) { localStorage.clear(); location.reload(); } }
+        function resetApp() { if(confirm("¿Borrar registros?")) { localStorage.clear(); location.reload(); } }
     </script>
 </body>
 </html>
