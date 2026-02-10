@@ -14,89 +14,98 @@
         .hud-gradient { background: linear-gradient(180deg, rgba(59, 130, 246, 0.03) 0%, rgba(0,0,0,0) 100%); }
         .mission-btn { transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; border-radius: 2px; color: #64748b; }
         .active-mission { border-color: #3b82f6; background: rgba(59, 130, 246, 0.1); box-shadow: 0 0 15px rgba(59, 130, 246, 0.2); color: #3b82f6; }
-        .prompt-card { transition: all 0.2s ease; cursor: pointer; border: 1px solid rgba(255,255,255,0.05); }
-        .prompt-card:hover { border-color: #3b82f6; background: rgba(59, 130, 246, 0.05); transform: translateY(-2px); }
+        .prompt-card { transition: all 0.2s ease; cursor: pointer; border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); }
+        .prompt-card:hover { border-color: #3b82f6; background: rgba(59, 130, 246, 0.08); transform: translateY(-3px); }
         .scroll-custom::-webkit-scrollbar { width: 3px; }
         .scroll-custom::-webkit-scrollbar-thumb { background: #1e293b; }
+        @keyframes pulse-fast { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        .pulse-text { animation: pulse-fast 2s infinite; }
     </style>
 </head>
 <body class="h-screen w-full flex flex-col">
 
-    <div id="prompt-library" class="hidden absolute inset-0 z-50 bg-[#05070a]/98 backdrop-blur-xl p-6 md:p-10 overflow-y-auto">
-        <div class="max-w-4xl mx-auto">
-            <div class="flex justify-between items-center mb-10 border-b border-white/10 pb-4">
+    <div id="prompt-library" class="hidden absolute inset-0 z-50 bg-[#05070a]/fb backdrop-blur-2xl p-6 md:p-10 overflow-y-auto">
+        <div class="max-w-5xl mx-auto">
+            <div class="flex justify-between items-center mb-10 border-b border-white/10 pb-6">
                 <div>
-                    <h2 class="text-blue-500 mono font-bold tracking-[0.3em] text-xl uppercase">Biblioteca Táctica</h2>
-                    <p class="text-[9px] text-slate-500 mono uppercase">Inyección de datos rápida</p>
+                    <h2 class="text-blue-500 mono font-bold tracking-[0.4em] text-2xl uppercase">Archivo de Prompts</h2>
+                    <p class="text-[10px] text-slate-500 mono uppercase tracking-widest">Inyección de datos nivel Spartan</p>
                 </div>
-                <button onclick="toggleLibrary()" class="text-slate-500 hover:text-white mono text-[10px] border border-white/10 px-4 py-2 uppercase">[ Salir ]</button>
+                <button onclick="toggleLibrary()" class="text-slate-400 hover:text-white mono text-[11px] border border-white/20 px-5 py-2 uppercase hover:bg-white/5 transition-all">[ Cerrar Archivo ]</button>
             </div>
+            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div onclick="usePrompt('Plan operativo SaaS IA atención al cliente.', 'business')" class="prompt-card p-6 bg-white/5">
-                    <h3 class="text-blue-400 mono text-[10px] mb-2 font-bold uppercase"># Estrategia Negocios</h3>
-                    <p class="text-[11px] text-slate-300 italic">"Plan operativo para SaaS de Inteligencia Artificial."</p>
+                <div onclick="usePrompt('Genera un plan estratégico para una Agencia de Automatización con IA enfocada en B2B.', 'business')" class="prompt-card p-6 rounded-sm">
+                    <h3 class="text-blue-400 mono text-[10px] mb-2 font-bold uppercase tracking-tighter"># Negocios IA</h3>
+                    <p class="text-xs text-slate-300 italic">"Plan operativo para Agencia de Automatización B2B."</p>
                 </div>
-                <div onclick="usePrompt('Estructura de capítulos libro medicina 2030.', 'creative')" class="prompt-card p-6 bg-white/5">
-                    <h3 class="text-purple-400 mono text-[10px] mb-2 font-bold uppercase"># Autor de Libros</h3>
-                    <p class="text-[11px] text-slate-300 italic">"Futuro de la medicina: Estructura narrativa."</p>
+                <div onclick="usePrompt('Estructura un libro técnico de 15 capítulos sobre el impacto de la IA en la economía global.', 'creative')" class="prompt-card p-6 rounded-sm">
+                    <h3 class="text-purple-400 mono text-[10px] mb-2 font-bold uppercase tracking-tighter"># Autor / Libros</h3>
+                    <p class="text-xs text-slate-300 italic">"Estructura narrativa: Economía e IA 2030."</p>
                 </div>
-                <div onclick="usePrompt('5 master prompts Cyberpunk 8k cinemático.', 'visual')" class="prompt-card p-6 bg-white/5">
-                    <h3 class="text-amber-400 mono text-[10px] mb-2 font-bold uppercase"># Arquitecto Visual</h3>
-                    <p class="text-[11px] text-slate-300 italic">"Ingeniería de prompts visuales 8k."</p>
+                <div onclick="usePrompt('Crea 5 prompts maestros para Midjourney v6 sobre arquitectura futurista y diseño industrial 8k.', 'visual')" class="prompt-card p-6 rounded-sm">
+                    <h3 class="text-amber-400 mono text-[10px] mb-2 font-bold uppercase tracking-tighter"># Diseño Visual</h3>
+                    <p class="text-xs text-slate-300 italic">"Ingeniería de prompts: Arquitectura Futurista 8k."</p>
                 </div>
-                <div onclick="usePrompt('Calendario 15 días LinkedIn automatización B2B.', 'social')" class="prompt-card p-6 bg-white/5">
-                    <h3 class="text-emerald-400 mono text-[10px] mb-2 font-bold uppercase"># Content Manager</h3>
-                    <p class="text-[11px] text-slate-300 italic">"Calendario estratégico para LinkedIn."</p>
+                <div onclick="usePrompt('Crea una estrategia de contenido de 30 días para LinkedIn para posicionarme como experto en IA.', 'social')" class="prompt-card p-6 rounded-sm">
+                    <h3 class="text-emerald-400 mono text-[10px] mb-2 font-bold uppercase tracking-tighter"># Marca Personal</h3>
+                    <p class="text-xs text-slate-300 italic">"Calendario de Autoridad: LinkedIn Expert."</p>
                 </div>
             </div>
         </div>
     </div>
 
     <header class="h-16 border-b border-white/5 flex items-center justify-between px-8 bg-[#0a0c10]">
-        <div class="flex items-center gap-6">
+        <div class="flex items-center gap-8">
             <div class="flex flex-col">
-                <span class="text-blue-500 font-bold tracking-tighter text-lg mono italic">CORTANA // OMNI-CORE</span>
-                <button onclick="toggleLibrary()" class="text-[8px] text-blue-400/60 hover:text-blue-400 mono uppercase animate-pulse text-left">[ Abrir Biblioteca ]</button>
+                <span class="text-blue-500 font-bold tracking-tighter text-lg mono italic leading-none">CORTANA // BIZ-CORE</span>
+                <button onclick="toggleLibrary()" class="text-[9px] text-blue-400/80 hover:text-blue-400 mono uppercase pulse-text text-left mt-1 tracking-widest">[ Acceder a Biblioteca ]</button>
             </div>
         </div>
-        <div class="text-[9px] mono text-emerald-500 bg-emerald-500/10 px-3 py-1 border border-emerald-500/20 font-bold uppercase">Señal: Estable</div>
+        <div class="flex items-center gap-4">
+            <div class="text-[9px] mono text-emerald-500 bg-emerald-500/10 px-4 py-1 border border-emerald-500/20 font-bold uppercase">Clave: En Línea</div>
+        </div>
     </header>
 
     <main class="flex-grow flex overflow-hidden hud-gradient">
-        <aside class="w-64 border-r border-white/5 bg-[#080a0f] p-4 flex flex-col">
-            <h2 class="text-[10px] mono text-slate-500 uppercase mb-4 border-b border-white/5 pb-2">Archivo</h2>
-            <div id="archive-list" class="flex-grow overflow-y-auto space-y-2 text-[10px] scroll-custom"></div>
-            <button onclick="location.reload()" class="mt-4 text-[8px] text-slate-700 hover:text-blue-400 mono uppercase">Reset</button>
+        <aside class="w-64 border-r border-white/5 bg-[#080a0f] p-5 flex flex-col">
+            <h2 class="text-[10px] mono text-slate-500 uppercase mb-4 border-b border-white/5 pb-2 italic tracking-widest">Historial de Intel</h2>
+            <div id="archive-list" class="flex-grow overflow-y-auto space-y-3 text-[10px] scroll-custom"></div>
+            <button onclick="location.reload()" class="mt-4 text-[8px] text-slate-700 hover:text-blue-500 mono uppercase font-bold transition-all italic">Refrescar Sistema</button>
         </aside>
 
         <section class="flex-grow flex flex-col relative">
-            <div id="chat-box" class="flex-grow overflow-y-auto p-8 space-y-6 scroll-custom">
+            <div id="chat-box" class="flex-grow overflow-y-auto p-10 space-y-8 scroll-custom">
                 <div class="flex flex-col gap-1">
-                    <span class="text-[10px] mono text-blue-500 font-bold uppercase italic">Cortana</span>
-                    <p class="text-slate-400 text-sm border-l border-blue-500/20 pl-4 italic">Biblioteca y enlace neural listos, Comandante.</p>
+                    <span class="text-[10px] mono text-blue-500 font-bold uppercase italic tracking-widest">Cortana</span>
+                    <p class="text-slate-400 text-sm border-l-2 border-blue-500/20 pl-4 italic leading-relaxed">
+                        Protocolo de enlace exitoso con la nueva clave. <br>
+                        Biblioteca de prompts cargada y lista para inyección, Comandante.
+                    </p>
                 </div>
             </div>
 
-            <div class="p-6 border-t border-white/5 bg-[#080a0f]/95">
-                <div class="max-w-4xl mx-auto space-y-4">
+            <div class="p-8 border-t border-white/5 bg-[#080a0f]/98 backdrop-blur-md">
+                <div class="max-w-4xl mx-auto space-y-6">
                     <div class="grid grid-cols-4 gap-2">
-                        <button id="btn-business" onclick="setMission('business')" class="mission-btn text-[9px] mono py-2 uppercase active-mission">Negocios</button>
-                        <button id="btn-creative" onclick="setMission('creative')" class="mission-btn text-[9px] mono py-2 uppercase">Escritura</button>
-                        <button id="btn-visual" onclick="setMission('visual')" class="mission-btn text-[9px] mono py-2 uppercase">Diseño</button>
-                        <button id="btn-social" onclick="setMission('social')" class="mission-btn text-[9px] mono py-2 uppercase">Social</button>
+                        <button id="btn-business" onclick="setMission('business')" class="mission-btn text-[9px] mono py-2 uppercase active-mission font-bold">Negocios</button>
+                        <button id="btn-creative" onclick="setMission('creative')" class="mission-btn text-[9px] mono py-2 uppercase font-bold">Escritura</button>
+                        <button id="btn-visual" onclick="setMission('visual')" class="mission-btn text-[9px] mono py-2 uppercase font-bold">Diseño</button>
+                        <button id="btn-social" onclick="setMission('social')" class="mission-btn text-[9px] mono py-2 uppercase font-bold">Social</button>
                     </div>
-                    <div class="flex gap-2">
-                        <input id="user-input" type="text" placeholder="Escriba aquí..." class="flex-grow bg-[#0d1117] border border-white/10 p-3 text-sm mono text-slate-200 focus:outline-none focus:border-blue-500">
-                        <button onclick="sendMessage()" class="bg-blue-600 px-6 text-[10px] mono font-bold text-white uppercase">Enviar</button>
+                    <div class="flex gap-3">
+                        <input id="user-input" type="text" placeholder="Ingrese directiva táctica..." class="flex-grow bg-[#0d1117] border border-white/10 p-4 text-sm mono text-slate-200 focus:outline-none focus:border-blue-500/50 rounded-sm transition-all shadow-inner">
+                        <button onclick="sendMessage()" class="bg-blue-600 px-10 text-[10px] mono font-bold text-white uppercase tracking-widest hover:bg-blue-500 shadow-lg shadow-blue-900/20 transition-all">Enviar</button>
                     </div>
-                    <button id="execute-btn" onclick="executeMasterPlan()" class="w-full border border-blue-500/30 text-blue-400 py-3 text-[10px] mono uppercase font-bold tracking-[0.2em] hover:bg-blue-500/10">[ PROTOCOLO MAESTRO ]</button>
+                    <button onclick="executeMasterPlan()" class="w-full border border-blue-500/30 text-blue-400 py-4 text-[11px] mono uppercase font-bold tracking-[0.3em] hover:bg-blue-500/10 transition-all shadow-xl">[ Ejecutar Protocolo Maestro ]</button>
                 </div>
             </div>
         </section>
     </main>
 
     <script>
-        const API_KEY = "AIzaSyAzj0Ba0mHQxbFnH11uBH_wQeYI_uoMqDU"; 
+        // NUEVA CLAVE INYECTADA
+        const API_KEY = "AIzaSyBlvfBhybdRUI5JFzmlnBQpFcCvOEto-PA"; 
         let currentMission = 'business';
 
         function toggleLibrary() { 
@@ -108,6 +117,7 @@
             document.getElementById('user-input').value = text;
             setMission(type);
             toggleLibrary();
+            document.getElementById('user-input').focus();
         }
 
         function setMission(type) {
@@ -133,33 +143,33 @@
             const chat = document.getElementById('chat-box');
             if(!input.value) return;
             const userMsg = input.value;
-            chat.innerHTML += `<div class="flex flex-col items-end"><span class="text-[9px] mono text-slate-500 uppercase">Comandante</span><p class="bg-white/5 p-3 rounded text-sm max-w-[80%] border border-white/5">${userMsg}</p></div>`;
+            chat.innerHTML += `<div class="flex flex-col items-end"><span class="text-[9px] mono text-slate-500 uppercase tracking-widest">Comandante</span><p class="bg-white/5 p-4 rounded text-sm max-w-[80%] border border-white/5 shadow-sm">${userMsg}</p></div>`;
             input.value = '';
             chat.scrollTop = chat.scrollHeight;
 
             try {
-                const aiResponse = await callGemini(`Responde como Cortana (IA táctica): ${userMsg}`);
-                chat.innerHTML += `<div class="flex flex-col"><span class="text-[9px] mono text-blue-500 uppercase font-bold italic">Cortana</span><p class="text-slate-300 text-sm border-l-2 border-blue-500/30 pl-3">${aiResponse}</p></div>`;
+                const aiResponse = await callGemini(`Eres Cortana de Halo (IA táctica). Responde de forma breve y profesional a: ${userMsg}`);
+                chat.innerHTML += `<div class="flex flex-col"><span class="text-[10px] mono text-blue-500 uppercase font-bold italic tracking-widest">Cortana</span><p class="text-slate-300 text-sm border-l-2 border-blue-500/30 pl-4 leading-relaxed">${aiResponse}</p></div>`;
             } catch(e) {
-                chat.innerHTML += `<div class="text-[9px] text-red-500 mono uppercase mt-2">[!] ERROR: ${e.message}</div>`;
+                chat.innerHTML += `<div class="text-[9px] text-red-500 mono uppercase mt-2 font-bold">[!] ERROR DE SEÑAL: ${e.message}</div>`;
             }
             chat.scrollTop = chat.scrollHeight;
         }
 
         async function executeMasterPlan() {
             const chat = document.getElementById('chat-box');
-            chat.innerHTML += `<div class="text-[9px] mono text-blue-400 animate-pulse mt-4">[SISTEMA]: Ejecutando...</div>`;
+            chat.innerHTML += `<div class="text-[9px] mono text-blue-400 animate-pulse mt-6">[SISTEMA]: Procesando Informe de Nivel Maestro...</div>`;
             const prompts = { 
-                business: "Plan de negocios IA.", 
-                creative: "Capítulos para libro IA.", 
-                visual: "Prompts 8k diseño.", 
-                social: "Plan 30 días LinkedIn." 
+                business: "Genera un plan de negocios estratégico para una agencia de automatización con IA.", 
+                creative: "Estructura un libro técnico de 12 capítulos sobre el futuro de la IA.", 
+                visual: "Genera 5 master prompts visuales 8k estilo cinematográfico.", 
+                social: "Plan de 30 días para LinkedIn (autoridad en IA)." 
             };
             try {
                 const report = await callGemini(prompts[currentMission]);
-                chat.innerHTML += `<div class="bg-blue-500/5 border border-blue-500/20 p-5 rounded text-sm text-slate-300 italic my-4 shadow-lg">${report.replace(/\n/g, '<br>')}</div>`;
+                chat.innerHTML += `<div class="bg-blue-500/5 border border-blue-500/20 p-6 rounded text-sm text-slate-300 italic my-6 shadow-2xl leading-relaxed">${report.replace(/\n/g, '<br>')}</div>`;
             } catch(e) {
-                chat.innerHTML += `<div class="text-[9px] text-red-500 mono uppercase mt-2">[!] ERROR</div>`;
+                chat.innerHTML += `<div class="text-[9px] text-red-500 mono uppercase mt-2 font-bold">[!] FALLO CRÍTICO EN EL PROTOCOLO</div>`;
             }
             chat.scrollTop = chat.scrollHeight;
         }
