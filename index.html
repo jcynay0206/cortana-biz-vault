@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CORTANA // ELITE-CORE V3</title>
+    <title>CORTANA // ELITE-CORE V3.1</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap');
@@ -11,9 +11,9 @@
         body { background-color: var(--bg); color: #e2e8f0; font-family: 'Inter', sans-serif; overflow: hidden; }
         .mono { font-family: 'JetBrains Mono', monospace; }
         .hud-gradient { background: linear-gradient(180deg, rgba(59, 130, 246, 0.03) 0%, rgba(0,0,0,0) 100%); }
-        .mission-btn { transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; color: #64748b; }
+        .mission-btn { transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; color: #64748b; font-size: 9px; text-transform: uppercase; font-weight: bold; padding: 8px 0; }
         .active-mission { border-color: #3b82f6; background: rgba(59, 130, 246, 0.1); box-shadow: 0 0 15px rgba(59, 130, 246, 0.2); color: #3b82f6; }
-        .prompt-card { transition: all 0.2s ease; cursor: pointer; border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); }
+        .prompt-card { transition: all 0.2s ease; cursor: pointer; border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); padding: 20px; }
         .prompt-card:hover { border-color: #3b82f6; background: rgba(59, 130, 246, 0.08); transform: translateY(-3px); }
         .scroll-custom::-webkit-scrollbar { width: 4px; }
         .scroll-custom::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
@@ -23,32 +23,32 @@
 </head>
 <body class="h-screen w-full flex flex-col">
 
-    <div id="prompt-library" class="hidden absolute inset-0 z-50 bg-[#05070a]/98 backdrop-blur-3xl p-6 md:p-10 overflow-y-auto scroll-custom">
+    <div id="prompt-library" class="hidden absolute inset-0 z-50 bg-[#05070a]/98 backdrop-blur-3xl p-10 overflow-y-auto scroll-custom">
         <div class="max-w-6xl mx-auto">
             <div class="flex justify-between items-center mb-10 border-b border-white/10 pb-6">
                 <div>
                     <h2 class="text-blue-500 mono font-bold tracking-[0.4em] text-2xl uppercase">Arsenal Estratégico</h2>
-                    <p class="text-[10px] text-slate-500 mono uppercase tracking-widest text-emerald-500/80">Sistemas Spartan Online</p>
+                    <p class="text-[10px] text-emerald-500/80 mono uppercase tracking-widest">Sistemas Spartan Online</p>
                 </div>
-                <button onclick="toggleLibrary()" class="text-slate-400 hover:text-white mono text-[11px] border border-white/20 px-5 py-2 uppercase hover:bg-white/5 transition-all">[ Salir ]</button>
+                <button onclick="toggleLibrary()" class="text-slate-400 hover:text-white mono text-[11px] border border-white/20 px-5 py-2 uppercase transition-all">[ Salir ]</button>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pb-20">
-                <div onclick="usePrompt('Crea un guion de ventas high-ticket para un servicio de [X].', 'business')" class="prompt-card p-5 rounded-sm">
-                    <h3 class="text-red-400 mono text-[10px] mb-2 font-bold uppercase tracking-tighter"># Cierre de Ventas</h3>
-                    <p class="text-[11px] text-slate-400 italic">Manejo de objeciones y guiones de alto valor.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pb-20 italic">
+                <div onclick="usePrompt('Crea un guion de ventas high-ticket para [X].', 'business')" class="prompt-card">
+                    <h3 class="text-red-400 mono text-[10px] mb-2 font-bold uppercase"># Cierre Ventas</h3>
+                    <p class="text-[11px] text-slate-400">Guion de alto valor.</p>
                 </div>
-                <div onclick="usePrompt('Diseña una oferta irresistible tipo Grand Slam para [X].', 'business')" class="prompt-card p-5 rounded-sm">
-                    <h3 class="text-pink-400 mono text-[10px] mb-2 font-bold uppercase tracking-tighter"># Ingeniería de Oferta</h3>
-                    <p class="text-[11px] text-slate-400 italic">Empaquetado de servicios y bonos.</p>
+                <div onclick="usePrompt('Diseña una oferta tipo Grand Slam para [X].', 'business')" class="prompt-card">
+                    <h3 class="text-pink-400 mono text-[10px] mb-2 font-bold uppercase"># Oferta Irresistible</h3>
+                    <p class="text-[11px] text-slate-400">Ingeniería de valor.</p>
                 </div>
-                <div onclick="usePrompt('Explica cómo crear una automatización en Make que conecte [X] con OpenAI.', 'creative')" class="prompt-card p-5 rounded-sm">
-                    <h3 class="text-orange-400 mono text-[10px] mb-2 font-bold uppercase tracking-tighter"># Automatización No-Code</h3>
-                    <p class="text-[11px] text-slate-400 italic">Flujos de trabajo en Make/Zapier.</p>
+                <div onclick="usePrompt('Escribe un script de automatización No-Code para [X].', 'creative')" class="prompt-card">
+                    <h3 class="text-orange-400 mono text-[10px] mb-2 font-bold uppercase"># Automatización</h3>
+                    <p class="text-[11px] text-slate-400">Flujos Make/Zapier.</p>
                 </div>
-                <div onclick="usePrompt('Escribe 3 variaciones de copy para Facebook Ads para un producto de [X].', 'social')" class="prompt-card p-5 rounded-sm">
-                    <h3 class="text-emerald-400 mono text-[10px] mb-2 font-bold uppercase tracking-tighter"># Marketing Ads</h3>
-                    <p class="text-[11px] text-slate-400 italic">Copys de alta conversión para pauta.</p>
+                <div onclick="usePrompt('Escribe 3 variaciones de copy para Ads de [X].', 'social')" class="prompt-card">
+                    <h3 class="text-emerald-400 mono text-[10px] mb-2 font-bold uppercase"># Marketing Ads</h3>
+                    <p class="text-[11px] text-slate-400">Alta conversión.</p>
                 </div>
             </div>
         </div>
@@ -56,7 +56,7 @@
 
     <header class="h-16 border-b border-white/5 flex items-center justify-between px-8 bg-[#0a0c10]">
         <div class="flex flex-col">
-            <span class="text-blue-500 font-bold tracking-tighter text-lg mono italic leading-none text-blue-400">CORTANA // ELITE-CORE</span>
+            <span class="text-blue-400 font-bold tracking-tighter text-lg mono italic">CORTANA // ELITE-CORE</span>
             <button onclick="toggleLibrary()" class="text-[9px] text-blue-400/80 hover:text-blue-400 mono uppercase tracking-widest text-left mt-1 pulse-fast">[ Acceder al Arsenal ]</button>
         </div>
         <div class="text-[9px] mono text-emerald-500 bg-emerald-500/10 px-4 py-1 border border-emerald-500/20 font-bold uppercase tracking-widest">Memoria: Sincronizada</div>
@@ -65,26 +65,25 @@
     <main class="flex-grow flex overflow-hidden hud-gradient">
         <aside class="w-72 border-r border-white/5 bg-[#080a0f] p-5 flex flex-col">
             <h2 class="text-[10px] mono text-slate-500 uppercase mb-4 border-b border-white/5 pb-2 italic tracking-widest">Base de Datos Guardada</h2>
-            <div id="intel-archive" class="flex-grow overflow-y-auto space-y-3 scroll-custom">
-                </div>
-            <button onclick="clearArchive()" class="mt-4 text-[8px] text-slate-700 hover:text-red-500 mono uppercase font-bold transition-all italic tracking-widest">Purgar Base de Datos</button>
+            <div id="intel-archive" class="flex-grow overflow-y-auto space-y-3 scroll-custom"></div>
+            <button onclick="clearArchive()" class="mt-4 text-[8px] text-slate-700 hover:text-red-500 mono uppercase font-bold italic tracking-widest">Purgar Registros</button>
         </aside>
 
         <section class="flex-grow flex flex-col relative">
             <div id="chat-box" class="flex-grow overflow-y-auto p-10 space-y-8 scroll-custom">
                 <div class="flex flex-col gap-1">
                     <span class="text-[10px] mono text-blue-500 font-bold uppercase italic tracking-widest">Cortana</span>
-                    <p class="text-slate-400 text-sm border-l-2 border-blue-500/20 pl-4 italic">Clave ...o-PA cargada. Arsenal y Base de Datos listos para la operación.</p>
+                    <p class="text-slate-400 text-sm border-l-2 border-blue-500/20 pl-4 italic">Clave ...o-PA cargada. Lista para procesar directivas, Comandante.</p>
                 </div>
             </div>
 
             <div class="p-8 border-t border-white/5 bg-[#080a0f]/98 backdrop-blur-md">
                 <div class="max-w-4xl mx-auto space-y-6">
                     <div class="grid grid-cols-4 gap-2">
-                        <button onclick="setMission('business')" id="btn-business" class="mission-btn text-[9px] mono py-2 uppercase active-mission font-bold">Negocios</button>
-                        <button onclick="setMission('creative')" id="btn-creative" class="mission-btn text-[9px] mono py-2 uppercase font-bold">Estrategia</button>
-                        <button onclick="setMission('visual')" id="btn-visual" class="mission-btn text-[9px] mono py-2 uppercase font-bold">Visual</button>
-                        <button onclick="setMission('social')" id="btn-social" class="mission-btn text-[9px] mono py-2 uppercase font-bold">Marketing</button>
+                        <button onclick="setMission('business')" id="btn-business" class="mission-btn active-mission">Negocios</button>
+                        <button onclick="setMission('creative')" id="btn-creative" class="mission-btn">Estrategia</button>
+                        <button onclick="setMission('visual')" id="btn-visual" class="mission-btn">Visual</button>
+                        <button onclick="setMission('social')" id="btn-social" class="mission-btn">Marketing</button>
                     </div>
                     <div class="flex gap-3">
                         <input id="user-input" type="text" placeholder="Orden directa..." class="flex-grow bg-[#0d1117] border border-white/10 p-4 text-sm mono text-slate-200 focus:outline-none focus:border-blue-500/50 rounded-sm">
@@ -99,13 +98,10 @@
         const API_KEY = "AIzaSyBlvfBhybdRUI5JFzmlnBQpFcCvOEto-PA"; 
         let currentMission = 'business';
 
-        // CARGAR MEMORIA AL INICIAR
         window.onload = loadArchive;
 
-        function toggleLibrary() { 
-            document.getElementById('prompt-library').classList.toggle('hidden');
-        }
-
+        function toggleLibrary() { document.getElementById('prompt-library').classList.toggle('hidden'); }
+        
         function usePrompt(text, type) {
             document.getElementById('user-input').value = text;
             setMission(type);
@@ -123,56 +119,65 @@
             const input = document.getElementById('user-input');
             const chat = document.getElementById('chat-box');
             if(!input.value) return;
+            
             const userMsg = input.value;
-            chat.innerHTML += `<div class="flex flex-col items-end"><span class="text-[9px] mono text-slate-500 uppercase tracking-widest">Comandante</span><p class="bg-white/5 p-4 rounded text-sm max-w-[80%] border border-white/5 shadow-sm">${userMsg}</p></div>`;
+            chat.innerHTML += `<div class="flex flex-col items-end"><span class="text-[9px] mono text-slate-500 uppercase tracking-widest">Comandante</span><p class="bg-white/5 p-4 rounded text-sm max-w-[80%] border border-white/5">${userMsg}</p></div>`;
             input.value = '';
             chat.scrollTop = chat.scrollHeight;
 
             try {
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
+                // REPARACIÓN DE URL PARA EVITAR 404
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+                
+                const response = await fetch(url, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ contents: [{ parts: [{ text: `Eres Cortana. Responde de forma táctica: ${userMsg}` }] }] })
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: `Actúa como Cortana (IA de Halo). Responde de forma técnica y profesional a: ${userMsg}` }] }]
+                    })
                 });
+
+                if (!response.ok) throw new Error('Fallo en enlace neural');
+
                 const data = await response.json();
                 const aiMsg = data.candidates[0].content.parts[0].text;
-
                 const msgId = Date.now();
+
                 chat.innerHTML += `
                     <div class="flex flex-col">
-                        <span class="text-[10px] mono text-blue-500 uppercase font-bold italic tracking-widest">Cortana</span>
+                        <span class="text-[10px] mono text-blue-500 font-bold uppercase italic tracking-widest">Cortana</span>
                         <div class="text-slate-300 text-sm border-l-2 border-blue-500/30 pl-4 leading-relaxed">
                             ${aiMsg.replace(/\n/g, '<br>')}
-                            <button onclick="saveToArchive('${msgId}', \`${aiMsg.replace(/`/g, "'")}\`)" class="mt-3 block text-[9px] text-emerald-500 mono uppercase hover:text-emerald-400 font-bold">[ + Guardar en Base de Datos ]</button>
+                            <button onclick="saveToArchive('${msgId}', \`${aiMsg.replace(/`/g, "'")}\`)" class="mt-4 block text-[9px] text-emerald-500 mono uppercase hover:text-emerald-400 font-bold">[ + Guardar Inteligencia ]</button>
                         </div>
                     </div>`;
             } catch(e) {
-                chat.innerHTML += `<div class="text-[9px] text-red-500 mono uppercase mt-2 font-bold">[!] ERROR DE SEÑAL</div>`;
+                chat.innerHTML += `<div class="text-[9px] text-red-500 mono uppercase mt-2 font-bold tracking-widest">[!] ERROR DE SEÑAL: REVISE CONEXIÓN O API KEY</div>`;
             }
             chat.scrollTop = chat.scrollHeight;
         }
 
         function saveToArchive(id, text) {
-            let archive = JSON.parse(localStorage.getItem('cortana_intel') || '[]');
-            archive.push({ id, text: text.substring(0, 100) + '...', full: text });
-            localStorage.setItem('cortana_intel', JSON.stringify(archive));
+            let archive = JSON.parse(localStorage.getItem('cortana_vault') || '[]');
+            archive.push({ id, text: text.substring(0, 60) + '...', full: text });
+            localStorage.setItem('cortana_vault', JSON.stringify(archive));
             loadArchive();
         }
 
         function loadArchive() {
             const container = document.getElementById('intel-archive');
-            const archive = JSON.parse(localStorage.getItem('cortana_intel') || '[]');
+            const archive = JSON.parse(localStorage.getItem('cortana_vault') || '[]');
             container.innerHTML = archive.map(item => `
-                <div class="p-3 bg-white/5 border border-white/5 rounded-sm hover:border-blue-500/30 transition-all cursor-help group" onclick="alert(\`${item.full}\`)">
-                    <p class="text-slate-400 leading-tight text-[10px]">${item.text}</p>
-                    <span class="text-[8px] text-blue-500 mono uppercase mt-2 block opacity-50 group-hover:opacity-100">Ver reporte completo</span>
+                <div class="p-3 bg-white/5 border border-white/5 rounded-sm hover:border-blue-500/40 transition-all cursor-pointer group mb-2" onclick="alert(\`${item.full}\`)">
+                    <p class="text-slate-400 text-[10px] leading-tight italic">${item.text}</p>
+                    <span class="text-[8px] text-blue-500 mono uppercase mt-2 block opacity-40 group-hover:opacity-100">Cargar Intel</span>
                 </div>
             `).join('');
         }
 
         function clearArchive() {
-            if(confirm("¿Purgar todos los registros?")) {
-                localStorage.removeItem('cortana_intel');
+            if(confirm("¿Purgar base de datos?")) {
+                localStorage.removeItem('cortana_vault');
                 loadArchive();
             }
         }
