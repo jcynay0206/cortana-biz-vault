@@ -3,62 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CORTANA // OMNI-CORE V3.5</title>
+    <title>CORTANA // OMNI-CORE V3.8</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap');
         :root { --bg: #05070a; --blue: #3b82f6; }
         body { background-color: var(--bg); color: #e2e8f0; font-family: 'Inter', sans-serif; overflow: hidden; }
         .mono { font-family: 'JetBrains Mono', monospace; }
-        .hud-border { border: 1px solid rgba(59, 130, 246, 0.1); }
         .mission-btn { transition: all 0.2s; cursor: pointer; color: #64748b; font-size: 10px; text-transform: uppercase; font-weight: bold; border: 1px solid rgba(255,255,255,0.05); }
-        .active-mission { border-color: var(--blue); background: rgba(59, 130, 246, 0.1); color: var(--blue); box-shadow: 0 0 10px rgba(59, 130, 246, 0.1); }
+        .active-mission { border-color: var(--blue); background: rgba(59, 130, 246, 0.1); color: var(--blue); }
         .prompt-card { transition: all 0.2s; cursor: pointer; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 16px; border-radius: 4px; }
-        .prompt-card:hover { border-color: var(--blue); background: rgba(59, 130, 246, 0.05); transform: translateY(-2px); }
+        .prompt-card:hover { border-color: var(--blue); background: rgba(59, 130, 246, 0.08); transform: translateY(-2px); }
         .scroll-custom::-webkit-scrollbar { width: 4px; }
         .scroll-custom::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
     </style>
 </head>
 <body class="h-screen w-full flex flex-col">
 
-    <div id="prompt-library" class="hidden absolute inset-0 z-50 bg-[#05070a]/fb backdrop-blur-3xl p-10 overflow-y-auto scroll-custom">
+    <div id="prompt-library" class="hidden absolute inset-0 z-50 bg-[#05070a]/95 backdrop-blur-3xl p-10 overflow-y-auto scroll-custom">
         <div class="max-w-6xl mx-auto">
             <div class="flex justify-between items-center mb-8 border-b border-white/10 pb-6">
                 <h2 class="text-blue-500 mono font-bold tracking-[0.3em] text-xl uppercase italic">Arsenal Estratégico Spartan</h2>
-                <button onclick="toggleLibrary()" class="text-slate-500 hover:text-white mono text-[11px] border border-white/20 px-4 py-2 uppercase transition-all">[ Cerrar ]</button>
+                <button onclick="toggleLibrary()" class="text-slate-500 hover:text-white mono text-[11px] border border-white/20 px-4 py-2 uppercase transition-all">[ Salir ]</button>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pb-20">
-                <div onclick="usePrompt('Genera un plan de negocio completo para una agencia de IA.', 'business')" class="prompt-card">
-                    <h3 class="text-blue-400 mono text-[10px] font-bold mb-1 tracking-widest">01. NEGOCIO IA</h3>
+                <div onclick="usePrompt('Genera un plan de negocio detallado para una agencia de automatización con IA.', 'business')" class="prompt-card">
+                    <h3 class="text-blue-400 mono text-[10px] font-bold mb-1"># NEGOCIO IA</h3>
                     <p class="text-[11px] text-slate-500 italic">Plan operativo y escalabilidad.</p>
                 </div>
-                <div onclick="usePrompt('Estructura un libro técnico de 15 capítulos sobre IA en 2026.', 'creative')" class="prompt-card">
-                    <h3 class="text-purple-400 mono text-[10px] font-bold mb-1 tracking-widest">02. AUTOR / LIBROS</h3>
-                    <p class="text-[11px] text-slate-500 italic">Estructura y narrativa técnica.</p>
+                <div onclick="usePrompt('Estructura un libro técnico de 15 capítulos sobre implementación de IA en empresas.', 'creative')" class="prompt-card">
+                    <h3 class="text-purple-400 mono text-[10px] font-bold mb-1"># AUTOR / LIBROS</h3>
+                    <p class="text-[11px] text-slate-500 italic">Estructura narrativa profesional.</p>
                 </div>
-                <div onclick="usePrompt('Crea un calendario de 30 días de Reels/TikToks virales sobre IA.', 'social')" class="prompt-card">
-                    <h3 class="text-pink-400 mono text-[10px] font-bold mb-1 tracking-widest">03. 30 DÍAS REELS</h3>
+                <div onclick="usePrompt('Crea un calendario de 30 días de Reels/TikToks virales sobre herramientas de IA.', 'social')" class="prompt-card">
+                    <h3 class="text-pink-400 mono text-[10px] font-bold mb-1"># 30 DÍAS REELS</h3>
                     <p class="text-[11px] text-slate-500 italic">Estrategia de contenido vertical.</p>
                 </div>
-                <div onclick="usePrompt('Crea un guion de ventas High-Ticket para cerrar servicios de $3k.', 'business')" class="prompt-card">
-                    <h3 class="text-red-400 mono text-[10px] font-bold mb-1 tracking-widest">04. VENTAS ÉLITE</h3>
-                    <p class="text-[11px] text-slate-500 italic">Guiones de cierre y objeciones.</p>
+                <div onclick="usePrompt('Escribe un guion de ventas de alto impacto para cerrar servicios High-Ticket.', 'business')" class="prompt-card">
+                    <h3 class="text-red-400 mono text-[10px] font-bold mb-1"># VENTAS ÉLITE</h3>
+                    <p class="text-[11px] text-slate-500 italic">Cierres y manejo de objeciones.</p>
                 </div>
-                <div onclick="usePrompt('Diseña una oferta irresistible tipo Grand Slam para [X].', 'business')" class="prompt-card">
-                    <h3 class="text-emerald-400 mono text-[10px] font-bold mb-1 tracking-widest">05. OFERTA MAESTRA</h3>
-                    <p class="text-[11px] text-slate-500 italic">Empaquetado de alto valor.</p>
+                <div onclick="usePrompt('Diseña una oferta irresistible tipo Grand Slam para mi servicio principal.', 'business')" class="prompt-card">
+                    <h3 class="text-emerald-400 mono text-[10px] font-bold mb-1"># OFERTA MAESTRA</h3>
+                    <p class="text-[11px] text-slate-500 italic">Empaquetado de alto valor percibido.</p>
                 </div>
-                <div onclick="usePrompt('Escribe un script de automatización No-Code en Make.com.', 'creative')" class="prompt-card">
-                    <h3 class="text-orange-400 mono text-[10px] font-bold mb-1 tracking-widest">06. NO-CODE OPS</h3>
-                    <p class="text-[11px] text-slate-500 italic">Flujos de trabajo avanzados.</p>
+                <div onclick="usePrompt('Diseña un flujo de automatización en Make.com que conecte CRM con OpenAI.', 'creative')" class="prompt-card">
+                    <h3 class="text-orange-400 mono text-[10px] font-bold mb-1"># NO-CODE OPS</h3>
+                    <p class="text-[11px] text-slate-500 italic">Eficiencia operativa avanzada.</p>
                 </div>
-                <div onclick="usePrompt('Analiza mi competencia en el nicho de [X] y halla fallos.', 'business')" class="prompt-card">
-                    <h3 class="text-cyan-400 mono text-[10px] font-bold mb-1 tracking-widest">07. ESPIONAJE MKT</h3>
-                    <p class="text-[11px] text-slate-500 italic">Análisis competitivo Spartan.</p>
+                <div onclick="usePrompt('Actúa como analista: identifica 3 debilidades de mi competencia en el nicho de [X].', 'business')" class="prompt-card">
+                    <h3 class="text-cyan-400 mono text-[10px] font-bold mb-1"># ESPIONAJE MKT</h3>
+                    <p class="text-[11px] text-slate-500 italic">Análisis competitivo profundo.</p>
                 </div>
-                <div onclick="usePrompt('Crea un hilo viral de LinkedIn para posicionar autoridad.', 'social')" class="prompt-card">
-                    <h3 class="text-indigo-400 mono text-[10px] font-bold mb-1 tracking-widest">08. GHOSTWRITING</h3>
+                <div onclick="usePrompt('Escribe un hilo de LinkedIn para posicionarme como líder de opinión en IA.', 'social')" class="prompt-card">
+                    <h3 class="text-indigo-400 mono text-[10px] font-bold mb-1"># GHOSTWRITING</h3>
                     <p class="text-[11px] text-slate-500 italic">Marca personal y autoridad.</p>
                 </div>
             </div>
@@ -67,24 +66,24 @@
 
     <header class="h-16 border-b border-white/5 flex items-center justify-between px-8 bg-[#0a0c10]">
         <div class="flex flex-col">
-            <span class="text-blue-500 font-bold tracking-tighter text-lg mono italic">CORTANA // ELITE-V3.5</span>
-            <button onclick="toggleLibrary()" class="text-[9px] text-blue-400/70 hover:text-blue-400 mono uppercase tracking-widest text-left mt-1">[ Abrir Arsenal (8 Módulos) ]</button>
+            <span class="text-blue-500 font-bold tracking-tighter text-lg mono italic">CORTANA // ELITE-V3.8</span>
+            <button onclick="toggleLibrary()" class="text-[9px] text-blue-400/70 hover:text-blue-400 mono uppercase tracking-widest text-left mt-1">[ Acceder al Arsenal (8) ]</button>
         </div>
-        <div id="api-status" class="text-[9px] mono text-emerald-500 bg-emerald-500/10 px-4 py-1 border border-emerald-500/20 font-bold uppercase tracking-widest">Enlace Neural: Activo</div>
+        <div class="text-[9px] mono text-emerald-500 bg-emerald-500/10 px-4 py-1 border border-emerald-500/20 font-bold uppercase tracking-widest">Protocolo: ESTABLE</div>
     </header>
 
-    <main class="flex-grow flex overflow-hidden hud-gradient">
+    <main class="flex-grow flex overflow-hidden">
         <aside class="w-72 border-r border-white/5 bg-[#080a0f] p-5 flex flex-col">
-            <h2 class="text-[10px] mono text-slate-500 uppercase mb-4 border-b border-white/5 pb-2 italic tracking-widest">Intel Archivada</h2>
+            <h2 class="text-[10px] mono text-slate-500 uppercase mb-4 border-b border-white/5 pb-2 italic tracking-widest">Intel Guardada</h2>
             <div id="intel-archive" class="flex-grow overflow-y-auto space-y-2 scroll-custom"></div>
-            <button onclick="clearArchive()" class="mt-4 text-[8px] text-slate-700 hover:text-red-500 mono uppercase font-bold tracking-widest">Purgar Memoria</button>
+            <button onclick="clearArchive()" class="mt-4 text-[8px] text-slate-700 hover:text-red-500 mono uppercase font-bold tracking-widest italic">Purgar Registros</button>
         </aside>
 
         <section class="flex-grow flex flex-col relative">
             <div id="chat-box" class="flex-grow overflow-y-auto p-10 space-y-8 scroll-custom">
                 <div class="flex flex-col gap-1">
-                    <span class="text-[10px] mono text-blue-500 font-bold uppercase">Cortana</span>
-                    <p class="text-slate-400 text-sm border-l-2 border-blue-500/20 pl-4 italic">Clave sincronizada. Los 8 módulos del arsenal están operativos. Esperando directiva.</p>
+                    <span class="text-[10px] mono text-blue-500 font-bold uppercase tracking-widest">Cortana</span>
+                    <p class="text-slate-400 text-sm border-l-2 border-blue-500/20 pl-4 italic">Enlace neural estabilizado en v1. Los 8 módulos están listos para ejecución.</p>
                 </div>
             </div>
 
@@ -94,10 +93,10 @@
                         <button onclick="setMission('business')" id="btn-business" class="mission-btn py-2 active-mission">Negocios</button>
                         <button onclick="setMission('creative')" id="btn-creative" class="mission-btn py-2">Estrategia</button>
                         <button onclick="setMission('visual')" id="btn-visual" class="mission-btn py-2">Visual</button>
-                        <button onclick="setMission('social')" id="btn-social" class="mission-btn py-2">Social</button>
+                        <button onclick="setMission('social')" id="btn-social" class="mission-btn py-2">Marketing</button>
                     </div>
                     <div class="flex gap-3">
-                        <input id="user-input" type="text" placeholder="Escriba comando..." class="flex-grow bg-[#0d1117] border border-white/10 p-4 text-sm mono text-slate-200 focus:outline-none focus:border-blue-500/50 rounded-sm">
+                        <input id="user-input" type="text" placeholder="Ingrese directiva..." class="flex-grow bg-[#0d1117] border border-white/10 p-4 text-sm mono text-slate-200 focus:outline-none focus:border-blue-500/50 rounded-sm">
                         <button onclick="sendMessage()" class="bg-blue-600 px-8 text-[10px] mono font-bold text-white uppercase tracking-widest hover:bg-blue-500 transition-all">Ejecutar</button>
                     </div>
                 </div>
@@ -132,26 +131,26 @@
             if(!input.value) return;
             
             const userMsg = input.value;
-            chat.innerHTML += `<div class="flex flex-col items-end"><span class="text-[9px] mono text-slate-500 uppercase tracking-widest">Comandante</span><p class="bg-white/5 p-4 rounded text-sm max-w-[85%] border border-white/5">${userMsg}</p></div>`;
+            chat.innerHTML += `<div class="flex flex-col items-end"><span class="text-[9px] mono text-slate-500 uppercase tracking-widest">Comandante</span><p class="bg-white/5 p-4 rounded text-sm max-w-[85%] border border-white/5 shadow-inner">${userMsg}</p></div>`;
             input.value = '';
             chat.scrollTop = chat.scrollHeight;
 
             try {
-                // MOTOR V1BETA REFORZADO
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
+                // CAMBIO A VERSIÓN ESTABLE v1 PARA EVITAR EL ERROR 404
+                const url = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+                
+                const response = await fetch(url, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        contents: [{ parts: [{ text: `Eres Cortana de Halo (IA táctica). Responde de forma técnica y profesional a: ${userMsg}` }] }]
+                        contents: [{ parts: [{ text: `Actúa como Cortana (IA de Halo). Responde de forma táctica: ${userMsg}` }] }]
                     })
                 });
 
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(errorData.error.message || 'Error de Enlace');
-                }
-
                 const data = await response.json();
+                
+                if (data.error) throw new Error(data.error.message);
+
                 const aiMsg = data.candidates[0].content.parts[0].text;
                 const msgId = Date.now();
 
@@ -160,37 +159,36 @@
                         <span class="text-[10px] mono text-blue-500 font-bold uppercase italic tracking-widest">Cortana</span>
                         <div class="text-slate-300 text-sm border-l-2 border-blue-500/30 pl-4 leading-relaxed">
                             ${aiMsg.replace(/\n/g, '<br>')}
-                            <button onclick="saveToArchive('${msgId}', \`${aiMsg.replace(/`/g, "'").replace(/\n/g, " ")}\`)" class="mt-4 block text-[9px] text-emerald-500 mono uppercase hover:text-emerald-400 font-bold">[ + Guardar en Intel ]</button>
+                            <button onclick="saveToArchive('${msgId}', \`${aiMsg.replace(/`/g, "'").replace(/\n/g, " ")}\`)" class="mt-4 block text-[9px] text-emerald-500 mono uppercase hover:text-emerald-400 font-bold">[ + Archivar Intel ]</button>
                         </div>
                     </div>`;
             } catch(e) {
-                console.error(e);
-                chat.innerHTML += `<div class="text-[9px] text-red-500 mono uppercase mt-2 font-bold tracking-widest">[!] FALLO DE SEÑAL: ${e.message}</div>`;
+                chat.innerHTML += `<div class="text-[9px] text-red-500 mono uppercase mt-2 font-bold tracking-widest">[!] ERROR: REVISAR API KEY O CONEXIÓN</div>`;
             }
             chat.scrollTop = chat.scrollHeight;
         }
 
         function saveToArchive(id, text) {
-            let archive = JSON.parse(localStorage.getItem('cortana_v35_vault') || '[]');
+            let archive = JSON.parse(localStorage.getItem('cortana_v38_vault') || '[]');
             archive.push({ id, text: text.substring(0, 50) + '...', full: text });
-            localStorage.setItem('cortana_v35_vault', JSON.stringify(archive));
+            localStorage.setItem('cortana_v38_vault', JSON.stringify(archive));
             loadArchive();
         }
 
         function loadArchive() {
             const container = document.getElementById('intel-archive');
-            const archive = JSON.parse(localStorage.getItem('cortana_v35_vault') || '[]');
+            const archive = JSON.parse(localStorage.getItem('cortana_v38_vault') || '[]');
             container.innerHTML = archive.map(item => `
                 <div class="p-3 bg-white/5 border border-white/5 rounded hover:border-blue-500/40 transition-all cursor-pointer group mb-2" onclick="alert(\`${item.full}\`)">
                     <p class="text-slate-400 text-[10px] leading-tight">${item.text}</p>
-                    <span class="text-[8px] text-blue-500 mono uppercase mt-2 block opacity-40 group-hover:opacity-100 italic">Recuperar Intel</span>
+                    <span class="text-[8px] text-blue-500 mono uppercase mt-1 block opacity-40 group-hover:opacity-100">Cargar Datos</span>
                 </div>
             `).join('');
         }
 
         function clearArchive() {
-            if(confirm("¿Purgar registros de memoria?")) {
-                localStorage.removeItem('cortana_v35_vault');
+            if(confirm("¿Purgar memoria?")) {
+                localStorage.removeItem('cortana_v38_vault');
                 loadArchive();
             }
         }
