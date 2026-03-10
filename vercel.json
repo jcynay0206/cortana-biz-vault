@@ -1,6 +1,12 @@
 {
-  "rewrites": [
-    { "source": "/api/chat", "destination": "/api/chat.js" },
-    { "source": "/(.*)", "destination": "/index.html" }
-  ]
+  "version": 2
 }
+```
+
+**2. Verifica en GitHub que la estructura sea exactamente:**
+```
+📁 repo/
+  ├── index.html
+  ├── vercel.json
+  └── api/
+      └── chat.js
