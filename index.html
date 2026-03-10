@@ -1030,6 +1030,14 @@ async function activateSecretCode() {
 }
 
 window.onload = async () => {
+    // Secret owner access via URL param ?nx=1
+    if (new URLSearchParams(window.location.search).get('nx') === '1') {
+        // Clean URL without reload
+        window.history.replaceState({}, '', window.location.pathname);
+        // Wait for auth then open modal
+        setTimeout(() => openSecretModal(), 800);
+    }
+
     const { data:{ session } }=await sb.auth.getSession();
     if (session?.user) await enterApp(session.user, session.user.user_metadata?.plan||'free');
     document.getElementById('user-input').addEventListener('keydown',e=>{ if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();} });
