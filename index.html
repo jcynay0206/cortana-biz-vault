@@ -293,8 +293,8 @@
 ══════════════════════════════════════════ -->
 <div id="screen-auth" class="screen active">
     <div class="hud-grid"></div>
-    <div class="auth-logo" id="nexus-logo" onclick="ownerTap()" style="cursor:default;">
-        <div class="n-brand">NEXUS</div>
+    <div class="auth-logo" id="nexus-logo" onclick="logoTap()" ondblclick="openSecretModal()" style="cursor:default;user-select:none;">
+        <div class="n-brand" id="logo-auth" style="cursor:default;user-select:none;" onclick="logoTap()" ondblclick="openSecretModal()">NEXUS</div>
         <div class="n-sub">Omni-Intelligence Platform // V2.0</div>
         <div class="n-line"></div>
     </div>
@@ -350,8 +350,8 @@
 ══════════════════════════════════════════ -->
 <div id="screen-paywall" class="screen">
     <div class="pw-wrap">
-        <div class="pw-title" ondblclick="openSecretModal()" style="cursor:default;">
-            <h1>SELECT MISSION TIER</h1>
+        <div class="pw-title" id="logo-paywall" onclick="logoTap()" ondblclick="openSecretModal()" style="cursor:default;user-select:none;">
+            <h1  style="cursor:pointer;">SELECT MISSION TIER</h1>
             <p>YOUR FREE TRIAL IS COMPLETE — CHOOSE YOUR PLAN TO CONTINUE</p>
         </div>
         <div class="plans-grid">
@@ -404,8 +404,9 @@
             </div>
             <div id="paywall-error" class="mono" style="font-size:9px;color:var(--red);margin-top:8px;display:none;"></div>
         </div>
-        <div style="text-align:center;margin-top:16px;">
-            <button onclick="doLogout()" class="mono" style="font-size:8px;color:#0d2030;background:none;border:none;cursor:pointer;letter-spacing:.1em;" onmouseover="this.style.color='#4a8090'" onmouseout="this.style.color='#0d2030'">← Sign out</button>
+        <div style="text-align:center;margin-top:16px;display:flex;justify-content:center;gap:24px;">
+            <button onclick="goBackToApp()" class="mono" style="font-size:8px;color:#0d2030;background:none;border:none;cursor:pointer;letter-spacing:.1em;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='#0d2030'">← BACK TO APP</button>
+            <button onclick="doLogout()" class="mono" style="font-size:8px;color:#0d2030;background:none;border:none;cursor:pointer;letter-spacing:.1em;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='#0d2030'">SIGN OUT</button>
         </div>
     </div>
 </div>
@@ -451,7 +452,7 @@
 <div id="screen-app" class="screen">
     <header class="app-header">
         <div>
-            <div class="nexus-logo">NEXUS <span>// OMNI-INTELLIGENCE</span></div>
+            <div class="nexus-logo" id="logo-app" onclick="logoTap()" ondblclick="openSecretModal()" style="cursor:default;user-select:none;">NEXUS <span>// OMNI-INTELLIGENCE</span></div>
             <button onclick="toggleLibrary()" class="mono" style="font-size:8px;color:#1a5060;letter-spacing:.15em;background:none;border:none;cursor:pointer;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='#1a5060'">[ ARSENAL · CTRL+L ]</button>
         </div>
         <div style="display:flex;align-items:center;gap:16px;">
@@ -476,7 +477,7 @@
             </div>
             <span id="free-lbl" class="mono" style="font-size:8px;color:#7a6020;">3 queries remaining</span>
         </div>
-        <button onclick="showPaywall()" class="mono" style="font-size:9px;color:var(--amber);border:1px solid rgba(255,171,0,.3);background:rgba(255,171,0,.06);padding:5px 14px;cursor:pointer;letter-spacing:.1em;transition:all .2s;" onmouseover="this.style.background='rgba(255,171,0,.15)'" onmouseout="this.style.background='rgba(255,171,0,.06)'">VIEW PLANS →</button>
+        <button onclick="showPaywallWithBack()" class="mono" style="font-size:9px;color:var(--amber);border:1px solid rgba(255,171,0,.3);background:rgba(255,171,0,.06);padding:5px 14px;cursor:pointer;letter-spacing:.1em;transition:all .2s;" onmouseover="this.style.background='rgba(255,171,0,.15)'" onmouseout="this.style.background='rgba(255,171,0,.06)'">VIEW PLANS →</button>
     </div>
 
     <main style="flex-grow:1;display:flex;overflow:hidden;position:relative;z-index:10;">
@@ -616,7 +617,17 @@ let ppBtn       = null;
 
 // ── SCREENS ───────────────────────────────────────
 function showScreen(id) { document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
-function showPaywall() { showScreen('screen-paywall'); }
+function showPaywall() {
+    showScreen('screen-paywall');
+    const backBtn = document.getElementById('back-to-app-btn');
+    if (backBtn) backBtn.style.display = (currentUser && currentPlan !== 'free') ? 'inline' : 'none';
+}
+function goBack() {
+    if (!currentUser) { showScreen('screen-auth'); return; }
+    if (currentPlan !== 'free') { showScreen('screen-app'); return; }
+    if (freeUsed < PLAN_LIMITS.free) { showScreen('screen-app'); return; }
+    showToast('Upgrade your plan to access the app.', 'info');
+}
 
 // ── AUTH ──────────────────────────────────────────
 function switchTab(tab) {
@@ -862,7 +873,7 @@ async function sendMessage() {
         if (currentPlan==='free') {
             freeUsed++; localStorage.setItem(`nf_${currentUser?.id}`,freeUsed); updateFreeSegs();
             if (freeUsed>=PLAN_LIMITS.free) {
-                setTimeout(()=>appendAI(`<strong style="color:var(--amber);">Free trial complete.</strong><br><br>Ready to unlock the full power of NEXUS? Choose your plan and keep building.<br><br><button onclick="showPaywall()" style="font-family:'Orbitron',sans-serif;font-weight:700;font-size:10px;padding:11px 24px;background:linear-gradient(135deg,#003a6a,#0066cc);color:#fff;border:none;cursor:pointer;letter-spacing:.15em;clip-path:polygon(6px 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%,0 6px);">VIEW PLANS ▶</button>`), 800);
+                setTimeout(()=>appendAI(`<strong style="color:var(--amber);">Free trial complete.</strong><br><br>Ready to unlock the full power of NEXUS? Choose your plan and keep building.<br><br><button onclick="showPaywallWithBack()" style="font-family:'Orbitron',sans-serif;font-weight:700;font-size:10px;padding:11px 24px;background:linear-gradient(135deg,#003a6a,#0066cc);color:#fff;border:none;cursor:pointer;letter-spacing:.15em;clip-path:polygon(6px 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%,0 6px);">VIEW PLANS ▶</button>`), 800);
             }
         }
     } catch(e) {
@@ -922,27 +933,61 @@ function showToast(msg,type='info') {
     clearTimeout(toastT); toastT=setTimeout(()=>t.className='',3500);
 }
 
-// ── OWNER SECRET TRIGGER ─────────────────────────
-let ownerTaps = 0, ownerTimer;
-function ownerTap() {
-    ownerTaps++;
-    clearTimeout(ownerTimer);
-    ownerTimer = setTimeout(() => { ownerTaps = 0; }, 2000);
-    if (ownerTaps >= 5) {
-        ownerTaps = 0;
-        const sec = document.getElementById('owner-section');
-        const isVisible = sec.style.display !== 'none';
-        sec.style.display = isVisible ? 'none' : 'block';
-        if (!isVisible) {
-            document.getElementById('owner-key').focus();
-            showToast('⚡ Owner mode activated', 'success');
-        }
+// ── SECRET LOGO TAP (2 taps = open secret modal) ─
+let logoTapCount = 0, logoTapTimer;
+function logoTap() {
+    logoTapCount++;
+    clearTimeout(logoTapTimer);
+    logoTapTimer = setTimeout(() => { logoTapCount = 0; }, 600);
+    if (logoTapCount >= 2) {
+        logoTapCount = 0;
+        openSecretModal();
     }
 }
+function ownerTap() { logoTap(); }
 
 
 // ── SECRET CODE MODAL (double-click NEXUS logo) ──
+
+function backToApp() {
+    if (currentPlan && currentPlan !== 'free') {
+        showScreen('screen-app');
+        document.getElementById('user-input').focus();
+    }
+}
+
+function showPaywallWithBack() {
+    // Show back button only if user already has a paid plan
+    const backBtn = document.getElementById('back-to-app-btn');
+    if (backBtn) backBtn.style.display = (currentPlan && currentPlan !== 'free') ? 'block' : 'none';
+    showScreen('screen-paywall');
+}
+
+function goBackFromPaywall() {
+    // Only go back if user has a paid plan — free users must choose a plan
+    if (currentPlan && currentPlan !== 'free') {
+        showScreen('screen-app');
+    } else {
+        showToast('Choose a plan to access NEXUS.', 'info');
+    }
+}
+
+function goBackToApp() {
+    // Only go back if user has a paid plan
+    if (currentUser && currentPlan !== 'free') {
+        showScreen('screen-app');
+        document.getElementById('user-input').focus();
+    } else {
+        showToast('No active plan — choose a plan to access the app.', 'info');
+    }
+}
+
 function openSecretModal() {
+    // If not logged in, show message
+    if (!currentUser) {
+        showToast('Sign in first, then double-click NEXUS to enter your code.', 'info');
+        return;
+    }
     document.getElementById('secret-code-input').value = '';
     document.getElementById('secret-error').style.display = 'none';
     document.getElementById('secret-modal').style.display = 'flex';
@@ -955,6 +1000,7 @@ async function activateSecretCode() {
     const code = document.getElementById('secret-code-input').value.trim();
     const errEl = document.getElementById('secret-error');
     if (!code) { errEl.textContent='[!] Enter a code.'; errEl.style.display='block'; return; }
+    if (!currentUser) { errEl.textContent='[!] Sign in first, then use this code.'; errEl.style.display='block'; return; }
 
     // Owner key check
     if (code === OWNER_KEY) {
