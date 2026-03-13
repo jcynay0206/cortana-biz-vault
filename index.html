@@ -72,9 +72,9 @@
         .auth-logo { text-align:center; margin-bottom:32px; position:relative; z-index:1; }
         .auth-logo .n-brand {
             font-family:'Orbitron',sans-serif; font-weight:900; font-size:42px; letter-spacing:.08em;
-            color:var(--cyan); text-shadow:0 0 30px rgba(0,229,255,.6), 0 0 80px rgba(0,229,255,.2);
+            color:#6b4423; text-shadow:0 0 30px rgba(139,94,60,.6), 0 0 80px rgba(139,94,60,.2);
         }
-        .auth-logo .n-sub { font-family:'Share Tech Mono',monospace; font-size:9px; color:#1a4a5a; letter-spacing:.4em; text-transform:uppercase; margin-top:4px; }
+        .auth-logo .n-sub { font-family:'Share Tech Mono',monospace; font-size:9px; color:#a08060; letter-spacing:.4em; text-transform:uppercase; margin-top:4px; }
         .auth-logo .n-line { width:100px; height:1px; background:linear-gradient(90deg,transparent,var(--cyan),transparent); margin:10px auto 0; }
 
         .auth-card {
@@ -89,10 +89,10 @@
         .auth-card::after {content:'';position:absolute;bottom:0;right:0;width:16px;height:16px;border-bottom:2px solid var(--cyan);border-right:2px solid var(--cyan);}
 
         .tab-row { display:flex; gap:3px; margin-bottom:28px; }
-        .tab-btn { flex:1; font-family:'Share Tech Mono',monospace; font-size:9px; letter-spacing:.18em; text-transform:uppercase; padding:10px; background:transparent; border:1px solid rgba(0,229,255,.1); color:#2a6070; cursor:pointer; transition:all .2s; }
-        .tab-btn.active { background:rgba(0,229,255,.08); border-color:rgba(0,229,255,.4); color:var(--cyan); }
+        .tab-btn { flex:1; font-family:'Share Tech Mono',monospace; font-size:9px; letter-spacing:.18em; text-transform:uppercase; padding:10px; background:transparent; border:1px solid rgba(139,94,60,.1); color:#8a6a50; cursor:pointer; transition:all .2s; }
+        .tab-btn.active { background:rgba(139,94,60,.08); border-color:rgba(139,94,60,.4); color:#6b4423; }
 
-        .field-lbl { font-family:'Share Tech Mono',monospace; font-size:8px; color:#1a5060; letter-spacing:.2em; text-transform:uppercase; display:block; margin-bottom:5px; margin-top:12px; }
+        .field-lbl { font-family:'Share Tech Mono',monospace; font-size:8px; color:#8a6a50; letter-spacing:.2em; text-transform:uppercase; display:block; margin-bottom:5px; margin-top:12px; }
         .auth-input { width:100%; background:rgba(255,255,255,.6); border:1px solid rgba(139,94,60,.2); color:#3d2b1f; font-family:'Share Tech Mono',monospace; font-size:12px; padding:11px 14px; outline:none; transition:all .2s; }
         .auth-input:focus { border-color:rgba(139,94,60,.5); box-shadow:0 0 16px rgba(139,94,60,.1); }
         .auth-input::placeholder { color:#b09a8a; }
@@ -112,13 +112,13 @@
         .pw-wrap { width:100%; max-width:980px; padding:40px 20px; animation:fadeUp .5s ease-out; }
         .pw-title { text-align:center; margin-bottom:36px; }
         .pw-title h1 { font-family:'Orbitron',sans-serif; font-weight:900; font-size:24px; color:#6b4423; text-shadow:none; letter-spacing:.08em; }
-        .pw-title p  { font-family:'Share Tech Mono',monospace; font-size:10px; color:#2a6070; letter-spacing:.15em; margin-top:8px; }
+        .pw-title p  { font-family:'Share Tech Mono',monospace; font-size:10px; color:#8a6a50; letter-spacing:.15em; margin-top:8px; }
 
         .plans-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:28px; }
         @media(max-width:680px){ .plans-grid{grid-template-columns:1fr;} }
 
-        .plan-card { background:linear-gradient(160deg,rgba(255,255,255,.8),rgba(237,232,223,.9)); border:1px solid rgba(0,229,255,.12); padding:26px 20px; position:relative; overflow:hidden; cursor:pointer; transition:all .3s; }
-        .plan-card:hover { transform:translateY(-4px); box-shadow:0 14px 40px rgba(0,229,255,.1); border-color:rgba(0,229,255,.35); }
+        .plan-card { background:linear-gradient(160deg,rgba(255,255,255,.8),rgba(237,232,223,.9)); border:1px solid rgba(139,94,60,.12); padding:26px 20px; position:relative; overflow:hidden; cursor:pointer; transition:all .3s; }
+        .plan-card:hover { transform:translateY(-4px); box-shadow:0 14px 40px rgba(139,94,60,.1); border-color:rgba(139,94,60,.35); }
         .plan-card.pro-card  { border-color:rgba(193,127,58,.3); background:linear-gradient(160deg,rgba(255,240,210,.8),rgba(237,232,223,.9)); }
         .plan-card.pro-card:hover { box-shadow:0 14px 40px rgba(255,171,0,.12); border-color:rgba(255,171,0,.45); }
         .plan-card.elite-card{ border-color:rgba(122,90,138,.3); background:linear-gradient(160deg,rgba(240,230,255,.8),rgba(237,232,223,.9)); }
@@ -127,11 +127,11 @@
 
         .plan-name  { font-family:'Orbitron',sans-serif; font-weight:700; font-size:11px; letter-spacing:.2em; text-transform:uppercase; margin-bottom:10px; }
         .plan-price { font-family:'Orbitron',sans-serif; font-weight:900; font-size:32px; margin:8px 0 4px; }
-        .plan-feat  { display:flex; align-items:flex-start; gap:7px; padding:5px 0; font-size:13px; color:var(--text2,#5a8090); border-bottom:1px solid rgba(0,229,255,.04); }
+        .plan-feat  { display:flex; align-items:flex-start; gap:7px; padding:5px 0; font-size:13px; color:var(--text2,#5a8090); border-bottom:1px solid rgba(139,94,60,.04); }
         .plan-feat:last-child { border:none; }
         .plan-feat.off { opacity:.25; text-decoration:line-through; }
         .plan-btn { width:100%; margin-top:18px; padding:11px; font-family:'Orbitron',sans-serif; font-weight:700; font-size:10px; letter-spacing:.15em; border:none; cursor:pointer; transition:all .2s; clip-path:polygon(6px 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%,0 6px); }
-        .btn-s { background:linear-gradient(135deg,#00304a,#005588); color:var(--cyan); }
+        .btn-s { background:linear-gradient(135deg,#00304a,#005588); color:#6b4423; }
         .btn-s:hover { background:linear-gradient(135deg,#004a6a,#0077bb); }
         .btn-p { background:linear-gradient(135deg,#5a3a00,#aa6600); color:#fff; }
         .btn-p:hover { box-shadow:0 0 22px rgba(255,171,0,.4); }
@@ -139,24 +139,24 @@
         .btn-e:hover { box-shadow:0 0 22px rgba(213,0,249,.4); }
 
         .code-row { display:flex; gap:10px; max-width:380px; margin:12px auto 0; }
-        .code-input { flex-grow:1; background:rgba(0,229,255,.03); border:1px solid rgba(0,229,255,.15); color:#c8e8f0; font-family:'Share Tech Mono',monospace; font-size:12px; padding:11px 14px; outline:none; transition:all .2s; }
-        .code-input:focus { border-color:rgba(0,229,255,.45); }
-        .code-btn { font-family:'Orbitron',sans-serif; font-weight:700; font-size:10px; padding:11px 18px; background:rgba(0,229,255,.1); color:var(--cyan); border:1px solid rgba(0,229,255,.3); cursor:pointer; transition:all .2s; letter-spacing:.12em; }
-        .code-btn:hover { background:rgba(0,229,255,.22); }
+        .code-input { flex-grow:1; background:rgba(139,94,60,.03); border:1px solid rgba(139,94,60,.15); color:#c8e8f0; font-family:'Share Tech Mono',monospace; font-size:12px; padding:11px 14px; outline:none; transition:all .2s; }
+        .code-input:focus { border-color:rgba(139,94,60,.45); }
+        .code-btn { font-family:'Orbitron',sans-serif; font-weight:700; font-size:10px; padding:11px 18px; background:rgba(139,94,60,.1); color:#6b4423; border:1px solid rgba(139,94,60,.3); cursor:pointer; transition:all .2s; letter-spacing:.12em; }
+        .code-btn:hover { background:rgba(139,94,60,.22); }
 
         /* ══════════════════════════════════════
            PAYMENT MODAL
         ══════════════════════════════════════ */
         #payment-modal { position:fixed; inset:0; z-index:200; background:rgba(240,235,225,.97); backdrop-filter:blur(24px); display:none; align-items:center; justify-content:center; padding:20px; }
         #payment-modal.open { display:flex; }
-        .pay-card { position:relative; width:100%; max-width:400px; background:linear-gradient(160deg,rgba(255,255,255,.9),rgba(237,232,223,.95)); border:1px solid rgba(0,229,255,.2); padding:36px; animation:fadeUp .4s ease-out; }
+        .pay-card { position:relative; width:100%; max-width:400px; background:linear-gradient(160deg,rgba(255,255,255,.9),rgba(237,232,223,.95)); border:1px solid rgba(139,94,60,.2); padding:36px; animation:fadeUp .4s ease-out; }
         .pay-card::before{content:'';position:absolute;top:0;left:0;width:14px;height:14px;border-top:2px solid var(--cyan);border-left:2px solid var(--cyan);}
         .pay-card::after{content:'';position:absolute;bottom:0;right:0;width:14px;height:14px;border-bottom:2px solid var(--cyan);border-right:2px solid var(--cyan);}
         .stripe-btn { display:block; width:100%; text-align:center; font-family:'Orbitron',sans-serif; font-weight:700; font-size:11px; letter-spacing:.15em; padding:13px; background:linear-gradient(135deg,#3730a3,#6366f1); color:#fff; text-decoration:none; transition:all .2s; clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px); }
         .stripe-btn:hover { box-shadow:0 0 24px rgba(99,102,241,.5); }
         .or-div { display:flex; align-items:center; gap:10px; margin:14px 0; }
-        .or-div::before,.or-div::after { content:''; flex:1; height:1px; background:rgba(0,229,255,.08); }
-        .or-div span { font-family:'Share Tech Mono',monospace; font-size:8px; color:#1a4050; letter-spacing:.2em; }
+        .or-div::before,.or-div::after { content:''; flex:1; height:1px; background:rgba(139,94,60,.08); }
+        .or-div span { font-family:'Share Tech Mono',monospace; font-size:8px; color:#8a6a50; letter-spacing:.2em; }
 
         /* ══════════════════════════════════════
            APP
@@ -166,7 +166,7 @@
         .app-header { position:relative; z-index:20; flex-shrink:0; height:60px; background:linear-gradient(180deg,#ede8df,var(--bg2)); border-bottom:1px solid rgba(139,94,60,.2); display:flex; align-items:center; justify-content:space-between; padding:0 24px; }
 
         .nexus-logo { font-family:'Orbitron',sans-serif; font-weight:900; font-size:20px; color:#6b4423; text-shadow:none; letter-spacing:.05em; }
-        .nexus-logo span { font-size:9px; font-weight:400; color:rgba(0,229,255,.3); letter-spacing:.2em; margin-left:6px; }
+        .nexus-logo span { font-size:9px; font-weight:400; color:rgba(139,94,60,.3); letter-spacing:.2em; margin-left:6px; }
 
         #free-bar { flex-shrink:0; display:flex; align-items:center; justify-content:space-between; padding:6px 24px; background:rgba(193,127,58,.08); border-bottom:1px solid rgba(139,94,60,.15); }
 
@@ -215,14 +215,14 @@
         #prompt-library.open { display:block; }
 
         .prm-card { background:rgba(255,255,255,.6); border:1px solid rgba(139,94,60,.12); padding:16px; cursor:pointer; transition:all .25s; position:relative; overflow:hidden; }
-        .prm-card::before { content:''; position:absolute; top:0; left:-100%; width:60%; height:100%; background:linear-gradient(90deg,transparent,rgba(0,229,255,.05),transparent); transition:left .4s; }
+        .prm-card::before { content:''; position:absolute; top:0; left:-100%; width:60%; height:100%; background:linear-gradient(90deg,transparent,rgba(139,94,60,.05),transparent); transition:left .4s; }
         .prm-card:hover::before { left:150%; }
         .prm-card:hover { border-color:rgba(139,94,60,.4); background:rgba(255,255,255,.9); transform:translateY(-3px); }
         .prm-card.locked { opacity:.3; cursor:not-allowed; filter:grayscale(.8); }
 
         /* Category color tags */
         .ctag { display:inline-block; font-family:'Share Tech Mono',monospace; font-size:7px; letter-spacing:.15em; text-transform:uppercase; padding:3px 9px; margin-bottom:8px; }
-        .ctag-biz     { color:var(--cyan);   border:1px solid rgba(0,229,255,.25);  background:rgba(0,229,255,.06); }
+        .ctag-biz     { color:#6b4423;   border:1px solid rgba(139,94,60,.25);  background:rgba(139,94,60,.06); }
         .ctag-mkt     { color:var(--amber);  border:1px solid rgba(255,171,0,.25);  background:rgba(255,171,0,.06); }
         .ctag-creator { color:#ec4899;       border:1px solid rgba(236,72,153,.25); background:rgba(236,72,153,.06); }
         .ctag-content { color:var(--green);  border:1px solid rgba(0,230,118,.25);  background:rgba(0,230,118,.06); }
@@ -231,21 +231,21 @@
         /* ── Intel sidebar ── */
         .intel-item { cursor:pointer; padding:10px 12px; margin-bottom:6px; background:rgba(255,255,255,.5); border:1px solid rgba(139,94,60,.1); transition:all .2s; }
         .intel-item:hover { background:rgba(255,255,255,.85); border-color:rgba(139,94,60,.3); transform:translateX(3px); }
-        .intel-detail { display:none; padding:8px; margin-top:6px; background:rgba(237,232,223,.8); border-left:2px solid #8b5e3c; font-size:11px; color:#5a8090; line-height:1.5; }
+        .intel-detail { display:none; padding:8px; margin-top:6px; background:rgba(237,232,223,.8); border-left:2px solid #8b5e3c; font-size:11px; color:#7a5a40; line-height:1.5; }
         .intel-item.open .intel-detail { display:block; }
 
         /* Plan badges */
         .badge { font-family:'Share Tech Mono',monospace; font-size:8px; letter-spacing:.15em; text-transform:uppercase; padding:4px 12px; border:1px solid; }
-        .b-free    { color:#4a6a7a; border-color:rgba(74,106,122,.3); background:rgba(74,106,122,.07); }
-        .b-starter { color:var(--cyan);   border-color:rgba(0,229,255,.3); background:rgba(0,229,255,.07); }
+        .b-free    { color:#8a7060; border-color:rgba(74,106,122,.3); background:rgba(74,106,122,.07); }
+        .b-starter { color:#6b4423;   border-color:rgba(139,94,60,.3); background:rgba(139,94,60,.07); }
         .b-pro     { color:var(--amber);  border-color:rgba(255,171,0,.3); background:rgba(255,171,0,.07); }
         .b-elite   { color:var(--purple); border-color:rgba(213,0,249,.3); background:rgba(213,0,249,.07); }
         .b-owner   { color:var(--amber);  border-color:rgba(255,171,0,.4); background:rgba(255,171,0,.1); }
 
         /* Action btns */
         .act { font-family:'Share Tech Mono',monospace; font-size:8px; text-transform:uppercase; letter-spacing:.1em; padding:4px 10px; cursor:pointer; background:transparent; transition:all .2s; }
-        .act-c { color:#1a5060; border:1px solid rgba(0,229,255,.12); }
-        .act-c:hover { color:var(--cyan); border-color:rgba(0,229,255,.4); }
+        .act-c { color:#8a6a50; border:1px solid rgba(139,94,60,.12); }
+        .act-c:hover { color:#6b4423; border-color:rgba(139,94,60,.4); }
         .act-s { color:#1a4a30; border:1px solid rgba(0,230,118,.12); }
         .act-s:hover { color:var(--green); border-color:rgba(0,230,118,.4); }
 
@@ -261,7 +261,7 @@
 
         /* Sweep animation on status */
         .sweep { position:relative; overflow:hidden; }
-        .sweep::before { content:''; position:absolute; left:-100%; top:0; bottom:0; width:60%; background:linear-gradient(90deg,transparent,rgba(0,229,255,.15),transparent); animation:swp 3s ease-in-out infinite; }
+        .sweep::before { content:''; position:absolute; left:-100%; top:0; bottom:0; width:60%; background:linear-gradient(90deg,transparent,rgba(139,94,60,.15),transparent); animation:swp 3s ease-in-out infinite; }
         @keyframes swp { 0%{left:-100%} 100%{left:200%} }
 
         /* Toast */
@@ -340,7 +340,7 @@
         </div>
 
         <div style="margin-top:20px;padding-top:14px;border-top:1px solid rgba(240,180,41,.07);text-align:center;">
-            <span style="font-size:8px;color:#0d2030;letter-spacing:.12em;">SECURE · ENCRYPTED · SUPABASE AUTH</span>
+            <span style="font-size:8px;color:#a08060;letter-spacing:.12em;">SECURE · ENCRYPTED · SUPABASE AUTH</span>
         </div>
     </div>
 </div>
@@ -357,9 +357,9 @@
         <div class="plans-grid">
             <!-- STARTER -->
             <div class="plan-card bracket" onclick="selectPlan('starter')">
-                <div class="plan-name" style="color:var(--cyan);">Starter</div>
-                <div class="plan-price" style="color:var(--cyan);">$27<span style="font-size:14px;font-weight:400;color:#2a6070;">/mo</span></div>
-                <div class="mono" style="font-size:8px;color:#1a4050;letter-spacing:.12em;margin-bottom:14px;">MONTHLY SUBSCRIPTION</div>
+                <div class="plan-name" style="color:#6b4423;">Starter</div>
+                <div class="plan-price" style="color:#6b4423;">$27<span style="font-size:14px;font-weight:400;color:#8a6a50;">/mo</span></div>
+                <div class="mono" style="font-size:8px;color:#8a6a50;letter-spacing:.12em;margin-bottom:14px;">MONTHLY SUBSCRIPTION</div>
                 <div class="plan-feat">▸ 10 AI queries per day</div>
                 <div class="plan-feat">▸ 10 Arsenal prompts</div>
                 <div class="plan-feat">▸ Business + Marketing modes</div>
@@ -396,8 +396,8 @@
                 <button class="plan-btn btn-e">DEPLOY ELITE</button>
             </div>
         </div>
-        <div style="border-top:1px solid rgba(0,229,255,.08);padding-top:22px;text-align:center;">
-            <p class="mono" style="font-size:9px;color:#1a4050;letter-spacing:.12em;">Already have an access code?</p>
+        <div style="border-top:1px solid rgba(139,94,60,.08);padding-top:22px;text-align:center;">
+            <p class="mono" style="font-size:9px;color:#8a6a50;letter-spacing:.12em;">Already have an access code?</p>
             <div class="code-row">
                 <input id="paywall-code" type="text" class="code-input" placeholder="Enter access code">
                 <button onclick="activateCode()" class="code-btn">ACTIVATE</button>
@@ -405,8 +405,8 @@
             <div id="paywall-error" class="mono" style="font-size:9px;color:var(--red);margin-top:8px;display:none;"></div>
         </div>
         <div style="text-align:center;margin-top:16px;display:flex;justify-content:center;gap:24px;">
-            <button onclick="goBackToApp()" class="mono" style="font-size:8px;color:#0d2030;background:none;border:none;cursor:pointer;letter-spacing:.1em;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='#0d2030'">← BACK TO APP</button>
-            <button onclick="doLogout()" class="mono" style="font-size:8px;color:#0d2030;background:none;border:none;cursor:pointer;letter-spacing:.1em;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='#0d2030'">SIGN OUT</button>
+            <button onclick="goBackToApp()" class="mono" style="font-size:8px;color:#a08060;background:none;border:none;cursor:pointer;letter-spacing:.1em;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='#0d2030'">← BACK TO APP</button>
+            <button onclick="doLogout()" class="mono" style="font-size:8px;color:#a08060;background:none;border:none;cursor:pointer;letter-spacing:.1em;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='#0d2030'">SIGN OUT</button>
         </div>
     </div>
 </div>
@@ -416,15 +416,15 @@
 ══════════════════════════════════════════ -->
 <div id="payment-modal">
     <div class="pay-card">
-        <button onclick="closePaymentModal()" class="mono" style="position:absolute;top:12px;right:12px;font-size:9px;color:#1a5060;background:rgba(0,229,255,.07);border:1px solid rgba(0,229,255,.15);padding:4px 10px;cursor:pointer;letter-spacing:.12em;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='#1a5060'">[ X ]</button>
-        <div class="mono" style="font-size:8px;color:#1a5060;letter-spacing:.2em;margin-bottom:6px;">ACTIVATE PLAN</div>
-        <div id="modal-plan-name" class="orb" style="font-size:28px;font-weight:900;color:var(--cyan);margin-bottom:2px;">PRO</div>
-        <div id="modal-plan-price" class="mono" style="font-size:12px;color:#2a6070;margin-bottom:24px;">$67 / month</div>
+        <button onclick="closePaymentModal()" class="mono" style="position:absolute;top:12px;right:12px;font-size:9px;color:#8a6a50;background:rgba(139,94,60,.07);border:1px solid rgba(139,94,60,.15);padding:4px 10px;cursor:pointer;letter-spacing:.12em;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='#1a5060'">[ X ]</button>
+        <div class="mono" style="font-size:8px;color:#8a6a50;letter-spacing:.2em;margin-bottom:6px;">ACTIVATE PLAN</div>
+        <div id="modal-plan-name" class="orb" style="font-size:28px;font-weight:900;color:#6b4423;margin-bottom:2px;">PRO</div>
+        <div id="modal-plan-price" class="mono" style="font-size:12px;color:#8a6a50;margin-bottom:24px;">$67 / month</div>
         <a id="stripe-link" href="#" target="_blank" class="stripe-btn">💳 &nbsp; PAY WITH CARD (STRIPE)</a>
         <div class="or-div"><span>OR</span></div>
-        <div class="mono" style="font-size:8px;color:#1a4050;letter-spacing:.15em;margin-bottom:10px;">PAY WITH PAYPAL:</div>
+        <div class="mono" style="font-size:8px;color:#8a6a50;letter-spacing:.15em;margin-bottom:10px;">PAY WITH PAYPAL:</div>
         <div id="paypal-container" style="min-height:45px;"></div>
-        <div class="mono" style="font-size:8px;color:#0d2030;text-align:center;margin-top:14px;line-height:1.9;letter-spacing:.07em;">
+        <div class="mono" style="font-size:8px;color:#a08060;text-align:center;margin-top:14px;line-height:1.9;letter-spacing:.07em;">
             SECURE PAYMENT · MONTHLY SUBSCRIPTION · CANCEL ANYTIME<br>ACCESS CODE SENT TO YOUR EMAIL AFTER PAYMENT
         </div>
     </div>
@@ -435,12 +435,12 @@
 ══════════════════════════════════════════ -->
 <div id="prompt-library" class="sc">
     <div style="max-width:1300px;margin:0 auto;padding:40px 24px;">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;padding-bottom:18px;border-bottom:1px solid rgba(0,229,255,.1);">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;padding-bottom:18px;border-bottom:1px solid rgba(139,94,60,.1);">
             <div>
-                <h2 class="orb" style="font-size:18px;font-weight:900;color:var(--cyan);text-shadow:0 0 20px rgba(0,229,255,.4);letter-spacing:.1em;">NEXUS ARSENAL</h2>
-                <p class="mono" style="font-size:9px;color:#1a5060;margin-top:4px;letter-spacing:.15em;">40 ELITE PROMPTS · BUSINESS + MARKETING + CREATORS · PLAN: <span id="lib-plan" style="color:var(--cyan);">—</span></p>
+                <h2 class="orb" style="font-size:18px;font-weight:900;color:#6b4423;text-shadow:0 0 20px rgba(139,94,60,.4);letter-spacing:.1em;">NEXUS ARSENAL</h2>
+                <p class="mono" style="font-size:9px;color:#8a6a50;margin-top:4px;letter-spacing:.15em;">40 ELITE PROMPTS · BUSINESS + MARKETING + CREATORS · PLAN: <span id="lib-plan" style="color:#6b4423;">—</span></p>
             </div>
-            <button onclick="toggleLibrary()" class="mono" style="font-size:9px;padding:10px 20px;border:1px solid rgba(0,229,255,.2);color:#2a6070;background:transparent;cursor:pointer;letter-spacing:.12em;transition:all .2s;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='#2a6070'">[ ESC / CLOSE ]</button>
+            <button onclick="toggleLibrary()" class="mono" style="font-size:9px;padding:10px 20px;border:1px solid rgba(139,94,60,.2);color:#8a6a50;background:transparent;cursor:pointer;letter-spacing:.12em;transition:all .2s;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='#2a6070'">[ ESC / CLOSE ]</button>
         </div>
         <div id="arsenal-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;padding-bottom:60px;"></div>
     </div>
@@ -453,16 +453,16 @@
     <header class="app-header">
         <div>
             <div class="nexus-logo" id="logo-app" onclick="logoTap()" ondblclick="openSecretModal()" style="cursor:default;user-select:none;">NEXUS <span>// OMNI-INTELLIGENCE</span></div>
-            <button onclick="toggleLibrary()" class="mono" style="font-size:8px;color:#1a5060;letter-spacing:.15em;background:none;border:none;cursor:pointer;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='#1a5060'">[ ARSENAL · CTRL+L ]</button>
+            <button onclick="toggleLibrary()" class="mono" style="font-size:8px;color:#8a6a50;letter-spacing:.15em;background:none;border:none;cursor:pointer;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='#1a5060'">[ ARSENAL · CTRL+L ]</button>
         </div>
         <div style="display:flex;align-items:center;gap:16px;">
-            <div id="mode-lbl" class="mono" style="font-size:9px;color:#1a5060;letter-spacing:.1em;">MODE: <span style="color:var(--cyan)">BUSINESS</span></div>
+            <div id="mode-lbl" class="mono" style="font-size:9px;color:#8a6a50;letter-spacing:.1em;">MODE: <span style="color:#6b4423">BUSINESS</span></div>
             <div id="plan-badge" class="badge b-free">FREE</div>
             <div style="display:flex;align-items:center;gap:8px;">
                 <div class="pulse"></div>
                 <span class="mono sweep" style="font-size:8px;color:var(--green);border:1px solid rgba(0,230,118,.2);background:rgba(0,230,118,.05);padding:4px 12px;letter-spacing:.15em;">ONLINE</span>
             </div>
-            <button onclick="doLogout()" class="mono" style="font-size:8px;color:#1a2030;border:1px solid rgba(0,229,255,.06);padding:5px 10px;background:transparent;cursor:pointer;letter-spacing:.08em;transition:all .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='#1a2030'">SIGN OUT</button>
+            <button onclick="doLogout()" class="mono" style="font-size:8px;color:#1a2030;border:1px solid rgba(139,94,60,.06);padding:5px 10px;background:transparent;cursor:pointer;letter-spacing:.08em;transition:all .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='#1a2030'">SIGN OUT</button>
         </div>
     </header>
 
@@ -485,12 +485,12 @@
         <!-- SIDEBAR -->
         <div class="app-sidebar sc" style="overflow-y:auto;">
             <div style="padding:18px;flex-grow:1;">
-                <div class="mono" style="font-size:8px;color:#0d2030;letter-spacing:.2em;text-transform:uppercase;padding-bottom:8px;border-bottom:1px solid rgba(0,229,255,.06);margin-bottom:10px;">SAVED INTEL</div>
+                <div class="mono" style="font-size:8px;color:#a08060;letter-spacing:.2em;text-transform:uppercase;padding-bottom:8px;border-bottom:1px solid rgba(139,94,60,.06);margin-bottom:10px;">SAVED INTEL</div>
                 <div id="intel-archive"></div>
-                <div id="empty-archive" class="mono" style="font-size:8px;color:#0d2030;text-align:center;padding:28px 0;line-height:2.2;letter-spacing:.08em;">— EMPTY —<br>Save AI responses<br>for quick access</div>
+                <div id="empty-archive" class="mono" style="font-size:8px;color:#a08060;text-align:center;padding:28px 0;line-height:2.2;letter-spacing:.08em;">— EMPTY —<br>Save AI responses<br>for quick access</div>
             </div>
-            <div style="padding:14px;border-top:1px solid rgba(0,229,255,.06);">
-                <button onclick="clearArchive()" class="mono" style="width:100%;font-size:8px;color:#0d2030;letter-spacing:.15em;background:none;border:none;cursor:pointer;text-transform:uppercase;transition:all .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='#0d2030'">[ PURGE MEMORY ]</button>
+            <div style="padding:14px;border-top:1px solid rgba(139,94,60,.06);">
+                <button onclick="clearArchive()" class="mono" style="width:100%;font-size:8px;color:#a08060;letter-spacing:.15em;background:none;border:none;cursor:pointer;text-transform:uppercase;transition:all .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='#0d2030'">[ PURGE MEMORY ]</button>
             </div>
         </div>
 
@@ -512,8 +512,8 @@
                         <button id="send-btn" onclick="sendMessage()" class="exec-btn">EXECUTE ▶</button>
                     </div>
                     <div style="display:flex;justify-content:space-between;margin-top:7px;">
-                        <span class="mono" style="font-size:8px;color:#0d2030;letter-spacing:.08em;">ENTER to send · CTRL+L Arsenal · ESC close</span>
-                        <span id="char-count" class="mono" style="font-size:8px;color:#0d2030;">0 chars</span>
+                        <span class="mono" style="font-size:8px;color:#a08060;letter-spacing:.08em;">ENTER to send · CTRL+L Arsenal · ESC close</span>
+                        <span id="char-count" class="mono" style="font-size:8px;color:#a08060;">0 chars</span>
                     </div>
                 </div>
             </div>
@@ -724,15 +724,30 @@ function selectPlan(plan) {
 function closePaymentModal() { document.getElementById('payment-modal').classList.remove('open'); }
 
 async function activateCode() {
-    const code=document.getElementById('paywall-code').value.trim().toUpperCase();
+    const raw=document.getElementById('paywall-code').value.trim();
+    const code=raw.toUpperCase();
     const e=document.getElementById('paywall-error');
     if (!code) { e.textContent='[!] Enter a code.'; e.style.display='block'; return; }
+
+    // Owner key check (case sensitive)
+    if (raw === OWNER_KEY) {
+        const { error }=await sb.auth.updateUser({ data:{ plan:'owner' } });
+        if (error) { e.textContent='[!] '+error.message; e.style.display='block'; return; }
+        currentPlan='owner';
+        showToast('∞ OWNER ACCESS GRANTED','success');
+        updatePlanUI(); renderWelcome(); showScreen('screen-app');
+        document.getElementById('user-input').focus();
+        return;
+    }
+
+    // Regular access codes
     if (!ACCESS_CODES[code]) { e.textContent='[!] Invalid code. Contact your admin.'; e.style.display='block'; return; }
     const plan=ACCESS_CODES[code];
     const { error }=await sb.auth.updateUser({ data:{ plan } });
     if (error) { e.textContent='[!] '+error.message; e.style.display='block'; return; }
     currentPlan=plan; showToast(`✓ ${PLAN_LABELS[plan]} activated!`,'success');
     updatePlanUI(); renderWelcome(); showScreen('screen-app');
+    document.getElementById('user-input').focus();
 }
 
 // ── ARSENAL ───────────────────────────────────────
@@ -752,10 +767,10 @@ function renderArsenal() {
         return `<div class="prm-card${locked?' locked':''}" data-index="${i}" data-locked="${locked}">
             <div class="ctag ${p.cat}">${p.cat.replace('ctag-','')}</div>
             <div class="orb" style="font-size:11px;font-weight:700;color:#a8c8dc;margin-bottom:6px;letter-spacing:.05em;">${p.t}</div>
-            <p style="font-size:11px;color:#3a6070;line-height:1.5;">${p.d}</p>
+            <p style="font-size:11px;color:#7a5a40;line-height:1.5;">${p.d}</p>
             ${locked
                 ? `<div class="mono" style="font-size:8px;color:var(--amber);margin-top:10px;letter-spacing:.1em;">🔒 REQUIRES ${i<10?'PRO':i<20?'PRO':'ELITE'}</div>`
-                : `<div class="mono" style="font-size:8px;color:#1a5060;margin-top:10px;opacity:.6;letter-spacing:.08em;">↵ TAP TO LOAD</div>`
+                : `<div class="mono" style="font-size:8px;color:#8a6a50;margin-top:10px;opacity:.6;letter-spacing:.08em;">↵ TAP TO LOAD</div>`
             }
         </div>`;
     }).join('');
@@ -784,7 +799,7 @@ function setMode(mode) {
     currentMode=mode;
     document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
     document.getElementById('btn-'+mode).classList.add('active');
-    document.getElementById('mode-lbl').innerHTML=`MODE: <span style="color:var(--cyan)">${MODES[mode].label}</span>`;
+    document.getElementById('mode-lbl').innerHTML=`MODE: <span style="color:#6b4423">${MODES[mode].label}</span>`;
 }
 
 // ── CHAT ──────────────────────────────────────────
@@ -796,7 +811,7 @@ function renderMD(text) {
         .replace(/`([^`]+)`/g,'<code>$1</code>')
         .replace(/^### (.+)$/gm,'<h3>$1</h3>').replace(/^## (.+)$/gm,'<h2>$1</h2>').replace(/^# (.+)$/gm,'<h2>$1</h2>')
         .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>')
-        .replace(/^- (.+)$/gm,'<li>$1</li>').replace(/^(\d+)\. (.+)$/gm,'<li><strong style="color:var(--cyan)">$1.</strong> $2</li>')
+        .replace(/^- (.+)$/gm,'<li>$1</li>').replace(/^(\d+)\. (.+)$/gm,'<li><strong style="color:#6b4423">$1.</strong> $2</li>')
         .replace(/\n\n/g,'<br><br>').replace(/\n(?!<)/g,'<br>')
         .replace(/\[⚠ FREE PLAN — Response limited\. Upgrade for full access\]/g,'<span class="watermark">⚠ FREE PLAN — Response limited. Upgrade for full access</span>');
 }
@@ -807,10 +822,10 @@ function renderWelcome() {
     const pc=currentPlan==='owner'||currentPlan==='elite'?'var(--purple)':currentPlan==='pro'?'var(--amber)':'var(--cyan)';
     appendAI(`Operator <strong style="color:${pc}">[${PLAN_LABELS[currentPlan]}]</strong> — NEXUS online.<br><br>
 ${isFree
-    ? `You have <strong>3 free queries</strong> to explore NEXUS. Responses are limited to 200 words on the free plan.<br><br><span class="mono" style="font-size:11px;color:#1a4050;">Upgrade anytime for full unlimited responses.</span>`
+    ? `You have <strong>3 free queries</strong> to explore NEXUS. Responses are limited to 200 words on the free plan.<br><br><span class="mono" style="font-size:11px;color:#8a6a50;">Upgrade anytime for full unlimited responses.</span>`
     : `<strong>${PLAN_ARSENAL[currentPlan]} Arsenal prompts</strong> unlocked · ${PLAN_LIMITS[currentPlan]===Infinity?'<strong>Unlimited</strong> queries':'<strong>'+PLAN_LIMITS[currentPlan]+'</strong> queries/day'}<br><br>
 <strong>6 Modes available:</strong> Business · Marketing · Sales · Content · Creator · Strategy<br><br>
-<span class="mono" style="font-size:11px;color:#1a4050;">ENTER to send · CTRL+L for Arsenal · Select mode below ↓</span>`}`);
+<span class="mono" style="font-size:11px;color:#8a6a50;">ENTER to send · CTRL+L for Arsenal · Select mode below ↓</span>`}`);
 }
 
 function appendAI(html, msgId) {
@@ -818,8 +833,8 @@ function appendAI(html, msgId) {
     const el=document.createElement('div'); el.className='msg-ai'; if(msgId) el.id=msgId;
     el.innerHTML=`
         <div style="display:flex;align-items:center;gap:8px;">
-            <span class="orb" style="font-size:10px;font-weight:900;color:var(--cyan);text-shadow:0 0 12px rgba(0,229,255,.5);letter-spacing:.1em;">NEXUS</span>
-            <span class="mono" style="font-size:8px;color:#0d2030;">${MODES[currentMode]?.label||''}</span>
+            <span class="orb" style="font-size:10px;font-weight:900;color:#6b4423;text-shadow:0 0 12px rgba(139,94,60,.5);letter-spacing:.1em;">NEXUS</span>
+            <span class="mono" style="font-size:8px;color:#a08060;">${MODES[currentMode]?.label||''}</span>
         </div>
         <div class="bubble">${html}</div>
         ${msgId?`<div style="display:flex;gap:8px;margin-top:5px;">
@@ -844,13 +859,13 @@ async function sendMessage() {
 
     const chat=document.getElementById('chat-box');
     const ue=document.createElement('div'); ue.className='msg-user';
-    ue.innerHTML=`<span class="mono" style="font-size:8px;color:#1a3a4a;letter-spacing:.1em;">OPERATOR</span><div class="bubble">${escH(text)}</div>`;
+    ue.innerHTML=`<span class="mono" style="font-size:8px;color:#b09a8a;letter-spacing:.1em;">OPERATOR</span><div class="bubble">${escH(text)}</div>`;
     chat.appendChild(ue);
     input.value=''; document.getElementById('char-count').textContent='0 chars';
     btn.disabled=true; chat.scrollTop=chat.scrollHeight;
 
     const load=document.createElement('div'); load.className='msg-ai'; load.id='loading-msg';
-    load.innerHTML=`<span class="orb" style="font-size:10px;font-weight:900;color:var(--cyan);letter-spacing:.1em;">NEXUS — PROCESSING</span><div class="bubble" style="padding:16px;"><div class="typing"><span></span><span></span><span></span></div></div>`;
+    load.innerHTML=`<span class="orb" style="font-size:10px;font-weight:900;color:#6b4423;letter-spacing:.1em;">NEXUS — PROCESSING</span><div class="bubble" style="padding:16px;"><div class="typing"><span></span><span></span><span></span></div></div>`;
     chat.appendChild(load); chat.scrollTop=chat.scrollHeight;
 
     try {
@@ -909,8 +924,8 @@ function loadArchive() {
     c.innerHTML=arr.map((item,i)=>`
         <div class="intel-item" onclick="this.classList.toggle('open')">
             <div style="display:flex;justify-content:space-between;gap:6px;">
-                <p style="font-size:10px;color:#3a6070;line-height:1.4;">${escH(item.preview)}</p>
-                <span class="mono" style="font-size:7px;color:#0d2030;white-space:nowrap;">#${arr.length-i}</span>
+                <p style="font-size:10px;color:#7a5a40;line-height:1.4;">${escH(item.preview)}</p>
+                <span class="mono" style="font-size:7px;color:#a08060;white-space:nowrap;">#${arr.length-i}</span>
             </div>
             <div class="intel-detail">${escH(item.full.substring(0,300))}${item.full.length>300?'...':''}</div>
             <div style="display:flex;gap:5px;margin-top:7px;">
